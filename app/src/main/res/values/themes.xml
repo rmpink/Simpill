@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-
-    <style name="SimpillAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="MeditrackAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowNoTitle">true</item>
@@ -11,54 +10,26 @@
         <item name="android:fillViewport">true</item>
     </style>
 
-    <style name="SimpillAppTheme.BlueBackground">
-        <item name="android:windowBackground">@drawable/background_blue</item>
-        <item name="android:statusBarColor">@color/blue_background_top</item>
-        <item name="android:navigationBarColor">@color/blue_background_nav_bar_color</item>
-        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@color/alice_blue</item>
-        <item name="statusBarBackground">@color/blue_background_top</item>
-        <item name="statusBarForeground">@color/blue_background_top</item>
-    </style>
-
-    <style name="SimpillAppTheme.GreyBackground">
-        <item name="android:windowBackground">@drawable/background_grey</item>
-        <item name="android:statusBarColor" >@color/blue_background_top</item>
-        <item name="android:navigationBarColor" >@color/grey_background_nav_bar_color</item>
-        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@color/alice_blue</item>
-        <item name="statusBarBackground">@color/background_grey_top</item>
-        <item name="statusBarForeground">@color/background_grey_top</item>
-    </style>
-
-    <style name="SimpillAppTheme.BlackBackground">
-        <item name="android:windowBackground">@drawable/background_black</item>
+    <style name="MeditrackAppTheme.BlackBackground">
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">?attr/isLightTheme</item>
+        <item name="android:windowBackground">@drawable/bg_black</item>
         <item name="android:statusBarColor">@color/dark_background_nav_bar_color</item>
         <item name="android:navigationBarColor">@color/dark_background_nav_bar_color</item>
         <item name="statusBarBackground">@color/dark_background_nav_bar_color</item>
         <item name="statusBarForeground">@color/dark_background_nav_bar_color</item>
-        <item name="android:textColorPrimary">@color/purple</item>
-    </style>
-
-    <style name="SimpillAppTheme.PurpleBackground">
-        <item name="android:windowBackground">@drawable/background_purple</item>
-        <item name="android:statusBarColor">@color/pink_lace</item>
-        <item name="android:navigationBarColor">@color/purple_background_nav_bar_color</item>
-        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@color/alice_blue</item>
-        <item name="statusBarBackground">@color/pink_lace</item>
-        <item name="statusBarForeground">@color/pink_lace</item>
+        <item name="android:textColorPrimary">@color/ij_teal</item>
     </style>
 
     <style name="SwitchCompatTheme">
-        <item name="colorControlActivated">@color/pink</item>
+        <item name="colorControlActivated">@color/white</item>
         <item name="android:colorForeground">#54f0f8ff</item>
-        <item name="colorSwitchThumbNormal">@color/alice_blue</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
     </style>
 
     <style name="CalendarViewTheme" parent="Theme.AppCompat">
         <item name="colorAccent">@color/light_gray</item>
-        <item name="colorPrimary">@color/alice_blue</item>
-        <item name="android:textColorPrimary">@color/alice_blue</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
-
-
 
 </resources>

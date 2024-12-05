@@ -1,8 +1,8 @@
 ![alt text](fastlane/metadata/android/en-US/images/featureGraphic.png)
 
-# Simpill
+# Meditrack
 
-Simpill is a free and open-source Android app for medication reminders. It does not contain any ads, trackers or unnecessary permissions.
+Meditrack is a free and open-source Android app for medication reminders. It does not contain any ads, trackers or unnecessary permissions.
 
 <b>Features:</b>
 

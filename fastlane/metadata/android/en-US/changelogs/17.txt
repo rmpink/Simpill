@@ -1,1 +1,1 @@
-Fix pill database primary key related bugs
+Fix medication database primary key related bugs

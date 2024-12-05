@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="@id/bottom_horizontal_guideline"
         app:layout_constraintStart_toStartOf="@+id/start_vertical_guideline"
         app:layout_constraintTop_toTopOf="@+id/top_horizontal_guideline"
-        android:background="@drawable/ic_clock_svgrepo_com" />
+        android:background="@drawable/svg_clock" />
 
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_marginEnd="32dp"
         android:ellipsize="end"
         android:gravity="top"
-        android:fontFamily="@font/inter_reg"
+
         android:text="@string/clocks_dialog_time_text"
         android:textColor="@color/black"
         android:textSize="28sp"

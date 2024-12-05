@@ -1,4 +1,4 @@
-Simpill 1.1
+Meditrack 1.1
 
 Added custom toasts
 Added permanent notifications option in settings

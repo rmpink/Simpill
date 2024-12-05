@@ -1,1 +1,1 @@
-Fix crash on pill deletion
+Fix crash on medication deletion

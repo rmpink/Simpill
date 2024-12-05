@@ -58,18 +58,19 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:contentDescription="Picture of a pill"
             app:layout_constraintBottom_toTopOf="@+id/pillBottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pillTop"
-            app:srcCompat="@drawable/pill_bottle_color_1" />
+            app:srcCompat="@drawable/svg_capsule" />
 
         <TextView
             android:id="@+id/pill_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_medium"
+
 
             android:textColor="@color/white"
             android:textSize="35sp"
@@ -80,11 +81,11 @@
 
         <Button
             android:id="@+id/dismiss_alarm_btn"
-            android:background="@drawable/dialog_bottom_btn_red"
+            android:background="@drawable/bg_dialog_bottom_btn_dark"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="@string/dismiss"
-            android:textColor="@color/alice_blue"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btnBottom"
             app:layout_constraintEnd_toStartOf="@+id/center"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -92,11 +93,11 @@
 
         <Button
             android:id="@+id/taken_pill_alarm_btn"
-            android:background="@drawable/dialog_bottom_btn_green"
+            android:background="@drawable/bg_dialog_bottom_btn_dark"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="@string/taken"
-            android:textColor="@color/alice_blue"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btnBottom"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="@+id/center"
@@ -119,7 +120,7 @@
             android:id="@+id/pill_time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_medium"
+
             android:textColor="@color/white"
             android:textSize="35sp"
             app:layout_constraintBottom_toTopOf="@+id/pillTop"

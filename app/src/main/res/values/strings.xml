@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="app_name" translatable="false">Simpill</string>
+    <string name="app_name" translatable="false">Meditrack</string>
 
     <!--General Strings-->
     <string name="yes">Yes</string>
@@ -35,14 +35,14 @@
     <string name="minus_button">Minus Button</string>
 
     <!--Create/Update Pill Strings-->
-    <string name="enter_pill_name">Pill Name?</string>
+    <string name="enter_pill_name">Medication Name</string>
     <string name="enter_pill_time_reminders">Reminders?</string>
     <string name="enter_pill_refill_date_reminder">Refill Date?</string>
     <string name="enter_pill_amount">Supply?</string>
     <string name="create_pill_btn">Create</string>
 
     <!--Create/Update Pill Warning Strings-->
-    <!--1st param is pill name-->
+    <!--1st param is medication name-->
 
     <!--Settings Strings-->
     <string name="settings">Settings</string>
@@ -60,8 +60,8 @@
     <string name="change_theme">Change Theme</string>
 
     <!--About Strings-->
-    <string name="simpillAboutParagraph_1">Simpill is a free and open-source medication reminder app without any trackers, annoying ads or unnecessary permissions.</string>
-    <string name="simpillAboutParagraph_2">Simpill is provided as a completely free application and it does not generate any revenue from ads or selling data.\n\nIf you would like to support Simpill and its future development, there are a number of donation options:</string>
+    <string name="meditrackAboutParagraph_1">Meditrack is a free and open-source medication reminder app without any trackers, annoying ads or unnecessary permissions.</string>
+    <string name="meditrackAboutParagraph_2">Meditrack is provided as a completely free application and it does not generate any revenue from ads or selling data.\n\nIf you would like to support Meditrack and its future development, there are a number of donation options:</string>
 
     <string name="monero" translatable="false">Monero</string>
     <string name="bitcoin" translatable="false">Bitcoin</string>
@@ -71,32 +71,32 @@
     <!--Pill Time TextView Strings-->
     <string name="take_at">Take at %1$s</string><!--1st parameter is the reminder times-->
     <string name="take_at_custom_interval">Take at %1$s\n(%2$s)</string><!--1st parameter are the reminder times-->
-    <string name="taken_at">Taken at %1$s</string><!--1st parameter is the time the pill has been taken at by user-->
+    <string name="taken_at">Taken at %1$s</string><!--1st parameter is the time the medication has been taken at by user-->
 
     <!--Toast Strings-->
-    <!--1st parameter = name of created pill-->
-    <string name="device_restart_toast">Resetting alarms for Simpill :)</string>
+    <!--1st parameter = name of created medication-->
+    <string name="device_restart_toast">Resetting alarms for Meditrack :)</string>
     <string name="time_format_24hr_toast">Time format set to 24hr.</string>
     <string name="time_format_12hr_toast">Time format set to 12hr.</string>
-    <string name="pill_taken_toast">%1$s taken.</string> <!--1st parameter = name of pill-->
-    <string name="pill_reset_toast">%1$s reset.</string> <!--1st parameter = name of pill-->
+    <string name="pill_taken_toast">%1$s taken.</string> <!--1st parameter = name of medication-->
+    <string name="pill_reset_toast">%1$s reset.</string> <!--1st parameter = name of medication-->
     <string name="sticky_notifications_enabled_toast">Sticky notifications enabled.</string>
     <string name="sticky_notifications_disabled_toast">Sticky notifications disabled.</string>
-    <string name="unknown_error_toast">Unknown error in Simpill :(</string>
-    <!--1st parameter = name of the updated pill-->
-    <string name="pill_db_deleted_toast">All pills deleted.</string>
-    <string name="append_pill_deleted_toast">%1$s deleted.</string> <!--1st parameter = name of the deleted pill-->
-    <string name="pill_bottle_amount_toast">You have %1$d %2$s pills left.</string> <!--1st parameter = current pill amount     2nd parameter = pill name-->
+    <string name="unknown_error_toast">Unknown error in Meditrack :(</string>
+    <!--1st parameter = name of the updated medication-->
+    <string name="pill_db_deleted_toast">All medications deleted.</string>
+    <string name="append_pill_deleted_toast">%1$s deleted.</string> <!--1st parameter = name of the deleted medication-->
+    <string name="pill_bottle_amount_toast">You have %1$d %2$s medications left.</string> <!--1st parameter = current medication amount     2nd parameter = medication name-->
 
     <!--Stockup Notification Strings-->
-    <!--1st parameter = name of pill-->
+    <!--1st parameter = name of medication-->
 
     <!--Reminder Notification Strings-->
-    <string name="reminder_notification_description">It\'s time to take your medication: %1$s :)</string> <!--1st parameter = name of pill-->
+    <string name="reminder_notification_description">It\'s time to take your medication: %1$s :)</string> <!--1st parameter = name of medication-->
 
     <!--Welcome Dialog Strings-->
     <string name="welcome_dialog_title">Welcome</string>
-    <string name="welcome_dialog_message">To create your first pill, select the plus button at the bottom of your screen.</string>
+    <string name="welcome_dialog_message">To create your first medication, select the plus button at the bottom of your screen.</string>
 
     <!--Pill Name Dialog Strings-->
     <string name="pill_name_dialog_title">Pill Name</string>
@@ -109,11 +109,11 @@
 
     <!--Delete Pill Dialog Strings-->
     <string name="pill_deletion_dialog_title">Delete?</string>
-    <string name="pill_deletion_dialog_message">Are you sure you want to delete %1$s?\n\nThis cannot be undone!</string> <!--1st parameter = name of pill-->
+    <string name="pill_deletion_dialog_message">Are you sure you want to delete %1$s?\n\nThis cannot be undone!</string> <!--1st parameter = name of medication-->
 
     <!--Delete Database Dialog Strings-->
     <string name="pill_db_reset_dialog_title">Delete Pills</string>
-    <string name="pill_db_reset_dialog_message">Would you like to delete the entire pill database?\n\nWARNING: This will remove all pills - it CANNOT be undone!</string>
+    <string name="pill_db_reset_dialog_message">Would you like to delete the entire medication database?\n\nWARNING: This will remove all medications - it CANNOT be undone!</string>
 
     <!--Pill Reset Dialog Strings-->
     <string name="reset_pill_dialog_title">Reset?</string>
@@ -134,7 +134,7 @@
 
     <!--Ask Overlay Permission Dialog Strings-->
     <string name="ask_overlay_permission_dialog_title">Overlay</string>
-    <string name="ask_overlay_permission_dialog_message">To set alarms, Simpill needs the \'display over other apps\' permission.\n\nIf you would like to receive full-screen alarm reminders, please grant this permission to Simpill in your settings.\n\nNote: You can enable this permission at any time via your device\'s settings.</string>
+    <string name="ask_overlay_permission_dialog_message">To set alarms, Meditrack needs the \'display over other apps\' permission.\n\nIf you would like to receive full-screen alarm reminders, please grant this permission to Meditrack in your settings.\n\nNote: You can enable this permission at any time via your device\'s settings.</string>
 
     <!--Ask Overlay Permission Dialog Strings-->
     <string name="alarm_or_notification_dialog_title">Alarm?</string>
@@ -160,8 +160,8 @@
     <string name="context_menu_update">Update</string>
     <string name="context_menu_delete">Delete</string>
     <string name="context_menu_change_color">Change Color</string>
-    <string name="donation_dialog_message">If you enjoy using Simpill, please consider making a donation :)\n\nSimpill is completely free and open-source without any ads or trackers.\n\nYou can donate using one of the buttons below:</string>
-    <string name="reminder_already_taken_description">You have already taken your %1$s :)</string> <!--1st parameter = name of pill-->
+    <string name="donation_dialog_message">If you enjoy using Meditrack, please consider making a donation :)\n\nMeditrack is completely free and open-source without any ads or trackers.\n\nYou can donate using one of the buttons below:</string>
+    <string name="reminder_already_taken_description">You have already taken your %1$s :)</string> <!--1st parameter = name of medication-->
 
     <string name="paypal_donation_link" translatable="false">https://www.paypal.com/donate/?hosted_button_id=A8UNN2A4D3P3G</string>
 
@@ -176,7 +176,7 @@
     <string name="light_dialogs_toast">Light dialogs applied :)</string>
 
     <string name="dev_email">Developer email</string>
-    <string name="simpill_code">Simpill\'s code</string>
+    <string name="meditrack_code">Meditrack\'s code</string>
     <string name="time_warning_toast">Times must be at least 15 mins apart.</string>
     <string name="time_enter">Please enter a time for each clock.</string>
     <string name="press_back_again_toast">Press the back button again to exit.</string>
@@ -188,7 +188,7 @@
     <string name="donate_via_paypal">Donate via Paypal</string>
     <string name="choose_times_per_day_dialog_title">Reminders</string>
 
-    <string name="simpill_source_link" translatable="false">https://gitlab.com/simpilldev/simpill</string>
+    <string name="meditrack_source_link" translatable="false">https://gitlab.com/meditrackdev/meditrack</string>
     <string name="append_days_to_custom_interval">Every %1$d days</string>
     <string name="sound">Sound</string>
     <string name="sound_switch">App Sounds</string>
@@ -197,7 +197,7 @@
     <string name="donate_bitcoin">Donate Bitcoin</string>
     <string name="pill_time_interval_text">Every %1$d days, starting %2$s</string>
     <string name="frequency">Frequency:\n</string>
-    <string name="alarm_type_alarm">Type: Alarm</string> <!--1st parameter = name of pill    2nd parameter = date of first pill reminder     E.g. Every 4 days, starting 13/01/2023-->
+    <string name="alarm_type_alarm">Type: Alarm</string> <!--1st parameter = name of medication    2nd parameter = date of first medication reminder     E.g. Every 4 days, starting 13/01/2023-->
     <!--1st parameter = file name selected by user -->
     <string name="alarm">Alarm</string>
     <string name="notification">Notification</string>
@@ -206,13 +206,13 @@
     <string name="reminder_type">Reminder Type:\n</string>
     <string name="reminder_sound">File:\n</string>
     <string name="custom_alarm_dialog_title">Custom Alarm?</string>
-    <string name="custom_alarm_dialog_message">Would you like to use your own audio file or Simpill\'s default alarm sound?</string>
+    <string name="custom_alarm_dialog_message">Would you like to use your own audio file or Meditrack\'s default alarm sound?</string>
     <string name="custom_alarm">Custom</string>
     <string name="default_alarm">Default</string>
     <string name="no_song_selected">No audio file selected.</string>
     <string name="its_time">It\'s %1$s!</string>
     <string name="paypal">Paypal</string>
-    <string name="no_pills_found">No pills found.\n(╯°□°）╯︵ ┻━┻</string>
+    <string name="no_pills_found">No medications found.\n(╯°□°）╯︵ ┻━┻</string>
     <string name="add">Add</string>
     <string name="optional">Optional</string>
     <string name="reminder">Reminder</string>
@@ -227,5 +227,142 @@
     <string name="open">Open</string>
     <string name="refill_dialog_msg">Select a refill date using the calendar below.</string>
     <string name="past_date_dialog_title">Hmm...</string>
-    <string name="past_date_dialog_message">Unless you have access to a TARDIS, the date cannot be set in the past.</string> <!--1st param is current time e.g. 16:20-->
+    <string name="past_date_dialog_message">Unless you have access to a TARDIS, the date cannot be set in the past.</string>
+    <string name="med_name_hint">Enter name here</string>
+    <string name="med_strength_hint">Enter strength here</string>
+    <string name="med_strength_units_hint">Units</string>
+    <string name="med_scheduled_reminders_hint">Scheduled reminders</string>
+    <string name="title_activity_reminders">ActivityReminders</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string> <!--1st param is current time e.g. 16:20-->
 </resources>

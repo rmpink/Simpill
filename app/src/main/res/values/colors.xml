@@ -1,49 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Retro Sunset -->
+<!--    <color name="rs_pink">#FA43F9</color>-->
+<!--    <color name="rs_darkpink">#D52DE5</color>-->
+<!--    <color name="rs_purple">#B74FFB</color>-->
+<!--    <color name="rs_indigo">#8D40FF</color>-->
+<!--    <color name="rs_blue">#5B33FE</color>-->
 
-    <color name="blue_background_top">#2A2A72</color>
-    <color name="blue_background_bottom">#0080CC</color>
+<!--    &lt;!&ndash; Neon Lightning &ndash;&gt;-->
+<!--    <color name="nl_blue">#2F46FA</color>-->
+<!--    <color name="nl_green">#55FC77</color>-->
+<!--    <color name="nl_yellow">#FFFE13</color>-->
+<!--    <color name="nl_pink">#FB41DA</color>-->
+<!--    <color name="nl_purple">#7E2DE8</color>-->
 
-    <color name="alice_blue">#f0f8ff</color>
+<!--    &lt;!&ndash; Bisexual Fluidity &ndash;&gt;-->
+<!--    <color name="bf_grey">#CEB6D0</color>-->
+<!--    <color name="bf_pink">#D72FE4</color>-->
+<!--    <color name="bf_purple">#9B27C6</color>-->
+<!--    <color name="bf_blue">#4232C6</color>-->
+<!--    <color name="bf_black">#170745</color>-->
 
-    <color name="blue_background_nav_bar_color">#037ac6</color>
-    <color name="grey_background_nav_bar_color">#4e7a9e</color>
-    <color name="purple_background_nav_bar_color">#B993D6</color>
+    <!-- Infrared Jungle -->
+    <color name="ij_pink">#FEA4FE</color>
+    <color name="ij_purple">#721075</color>
+    <color name="ij_teal">#83DBE7</color>
+    <color name="ij_darkteal">#263548</color>
+
+    <!-- City Nights -->
+<!--    <color name="cn_blue">#0061BF</color>-->
+<!--    <color name="cn_periwinkle">#9167F1</color>-->
+<!--    <color name="cn_purple">#6E3890</color>-->
+<!--    <color name="cn_magenta">#D200A3</color>-->
+
+<!--    &lt;!&ndash; Opalescent Dew &ndash;&gt;-->
+<!--    <color name="od_lightpink">#F4DCFE</color>-->
+<!--    <color name="od_pink">#FCAFFF</color>-->
+<!--    <color name="od_purple">#8442CA</color>-->
+<!--    <color name="od_teal">#6CDDFD</color>-->
+<!--    <color name="od_darkteal">#0BB4DF</color>-->
+
+<!--    &lt;!&ndash; Crystalline Dream &ndash;&gt;-->
+<!--    <color name="cd_darkteal">#219BC3</color>-->
+<!--    <color name="cd_teal">#B2D3E1</color>-->
+<!--    <color name="cd_lightpink">#F2CFDA</color>-->
+<!--    <color name="cd_darkpink">#C66AAB</color>-->
+<!--    <color name="cd_purple">#68417F</color>-->
+
+<!--    &lt;!&ndash; Oily Shimmer &ndash;&gt;-->
+<!--    <color name="os_purple">#9861B4</color>-->
+<!--    <color name="os_palepurple">#C272B1</color>-->
+<!--    <color name="os_pink">#EE75C2</color>-->
+<!--    <color name="os_blue">#7DB1D8</color>-->
+<!--    <color name="os_teal">#92DCE9</color>-->
+<!--    <color name="os_green">#81F2F0</color>-->
+
+<!--    <color name="white">#f0f8ff</color>-->
     <color name="dark_background_nav_bar_color">#212121</color>
-
-
-    <color name="black">#FF000000</color>
-    <color name="chinese_black">#141414</color>
-
-    <color name="blue">#3232ff</color>
-    <color name="light_blue">#a6b5ff</color>
-
-    <color name="pink">#e5b7bf</color>
-    <color name="purple">#9879cc</color>
-    <color name="dark_purple">#7960a3</color>
-
-    <color name="white">#FFFFFFFF</color>
-    <color name="gray">#282828</color>
-    <color name="toast_dark">#454545</color>
-
-    <color name="dark_green">#196919</color>
-    <color name="green">#4ca64c</color>
-    <color name="light_green">#7acda4</color>
-
-    <color name="dark_orange">#ce8c13</color>
-    <color name="orange">#ffbe46</color>
-    <color name="light_orange">#ffd17e</color>
-
-    <color name="red">#74475c</color>
-    <color name="dark_red">#B91919</color>
-    <color name="light_red">#ff7373</color>
-
+    <color name="black">#000000</color>
+<!--    <color name="pink">#e5b7bf</color>-->
+<!--    <color name="pink_lace">#FBC7D4</color>-->
+<!--    <color name="light_purple">#9182C4</color>-->
+<!--    <color name="purple">#9879cc</color>-->
+<!--    <color name="dark_purple">#7960a3</color>-->
+    <color name="white">#FFFFFF</color>
     <color name="light_gray">#b3b3b3</color>
+    <color name="gray">#282828</color>
     <color name="dark_gray">#212121</color>
-
-    <color name="light_purple">#9182C4</color>
-    <color name="pink_lace">#FBC7D4</color>
-    <color name="background_grey_bottom">#517fa4</color>
-    <color name="background_grey_top">#243949</color>
     <color name="toast_green">#78ca97</color>
+    <color name="toast_dark">#454545</color>
+    <color name="background_grey_top">#243949</color>
+    <color name="background_grey_bottom">#517fa4</color>
 </resources>

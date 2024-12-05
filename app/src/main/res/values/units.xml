@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="units_array">
+        <item>units</item>
+        <item>mg</item>
+        <item>IU</item>
+        <item>mcg</item>
+        <item>mcg/ml</item>
+        <item>mEq</item>
+        <item>mL</item>
+        <item>%</item>
+        <item>mg/g</item>
+        <item>mg/cm2</item>
+        <item>mg/ml</item>
+        <item>mcg/hr</item>
+    </string-array>
+</resources>

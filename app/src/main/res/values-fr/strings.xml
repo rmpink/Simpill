@@ -3,8 +3,8 @@
     <string name="welcome_dialog_title">Bienvenue</string>
     <string name="warning_icon_content_description">Warning Icon</string>
 
-    <string name="simpillAboutParagraph_1">Simpill est une application libre et open source. Elle ne contient pas de traqeurs, d\'annonces gênantes, ou d\'app autorisations pas nécessaire.</string>
-    <string name="simpillAboutParagraph_2">Simpill est fournie comme une application complètement libre et open source. Elle ne gagne pas d\'argent d\'annonces ou de vendre vos données.\n\nSi vous voudriez remercier au développeur de Simpill et soutenir sa développement futur, vous pouvez faire un don en utilisant les boutons ci-dessous:</string>
+    <string name="meditrackAboutParagraph_1">Meditrack est une application libre et open source. Elle ne contient pas de traqeurs, d\'annonces gênantes, ou d\'app autorisations pas nécessaire.</string>
+    <string name="meditrackAboutParagraph_2">Meditrack est fournie comme une application complètement libre et open source. Elle ne gagne pas d\'argent d\'annonces ou de vendre vos données.\n\nSi vous voudriez remercier au développeur de Meditrack et soutenir sa développement futur, vous pouvez faire un don en utilisant les boutons ci-dessous:</string>
 
 
     <!--General Strings-->
@@ -136,8 +136,8 @@
     <string name="context_menu_delete">Supprimer</string>
     <string name="context_menu_change_color">Changer la couleur</string>
 
-    <string name="donation_dialog_message">Si vous aimez utiliser Simpill, s\'il vous plaît envisager de faire un don :)\n\nSimpill est complètement libre et open source. Elle ne contient pas de traqeurs, d\'annonces gênantes, ou d\'app autorisations pas nécessaire. \n\nVous pouvez faire un don en utilisant les boutons ci-dessous.</string>
-    <string name="reminder_already_taken_description">Vous avez déjà pris votre médicament: %1$s :)</string> <!--1st parameter = name of pill-->
+    <string name="donation_dialog_message">Si vous aimez utiliser Meditrack, s\'il vous plaît envisager de faire un don :)\n\nMeditrack est complètement libre et open source. Elle ne contient pas de traqeurs, d\'annonces gênantes, ou d\'app autorisations pas nécessaire. \n\nVous pouvez faire un don en utilisant les boutons ci-dessous.</string>
+    <string name="reminder_already_taken_description">Vous avez déjà pris votre médicament: %1$s :)</string> <!--1st parameter = name of medication-->
 
     <!--Use masculine for translations-->
     <string name="blue">Bleu</string>
@@ -150,7 +150,7 @@
     <string name="light_dialogs_toast">Les boîtes de dialogue clair ont été appliquée :)</string>
 
     <string name="dev_email">Mon email</string>
-    <string name="simpill_code">Code source</string>
+    <string name="meditrack_code">Code source</string>
     <string name="clocks_dialog_time_text">Fois #%1$d</string>
     <string name="chooses_times_dialog_text">Choisissez les rappels de votre médicament en utilisant les horloges ci-dessous:</string>
     <string name="time_warning_toast">Les fois doivent être au moins 15 mins minutes d\'intervalle.</string>

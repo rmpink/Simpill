@@ -1,1 +1,1 @@
-Fix for pills not automatically resetting after 12 hours.
+Fix for medications not automatically resetting after 12 hours.

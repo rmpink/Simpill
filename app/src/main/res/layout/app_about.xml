@@ -9,98 +9,80 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/simpill_paragraph"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="32dp"
-            android:fontFamily="@font/inter_reg"
-            android:letterSpacing="0.01"
-            android:lineSpacingMultiplier="1.15"
-            android:text="@string/simpillAboutParagraph_1"
-            android:textColor="@color/alice_blue"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back_button"
-            tools:ignore="UnusedAttribute" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_black">
 
         <Button
-            android:id="@+id/back_button"
+            android:id="@+id/btn_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/chevron_left"
-            android:scaleX="1.6"
-            android:scaleY="1.6"
+            android:background="@drawable/svg_chevron_left"
+            android:scaleX="1"
+            android:scaleY="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/gitlab_title"
+            android:id="@+id/meditrack_paragraph"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="32dp"
+            android:layout_marginTop="12dp"
+            android:letterSpacing="0.01"
+            android:lineSpacingMultiplier="1.15"
+            android:text="@string/meditrackAboutParagraph_1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgLogo"
+            tools:ignore="UnusedAttribute" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_github"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toBottomOf="@+id/btn_back"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/svg_capsule" />
+
+        <TextView
+            android:id="@+id/tv_github"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.01"
-            android:text="@string/simpill_code"
-            android:textColor="@color/alice_blue"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/simpill_paragraph"
-            app:layout_constraintTop_toBottomOf="@+id/simpill_paragraph" />
+            android:text="@string/meditrack_code"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/meditrack_paragraph"
+            app:layout_constraintTop_toBottomOf="@+id/meditrack_paragraph" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/gitlab_title"
-            app:layout_constraintStart_toEndOf="@+id/gitlab_title"
-            app:layout_constraintTop_toTopOf="@+id/gitlab_title"
-            app:srcCompat="@drawable/ic_gitlab_svgrepo_com" />
-
-        <TextView
-            android:id="@+id/gitlab_link"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="32dp"
-            android:autoLink="all"
-            android:fontFamily="@font/inter_reg"
-            android:letterSpacing="0.01"
-            android:text="@string/simpill_source_link"
-            android:textColor="@color/alice_blue"
-            android:textColorLink="@color/light_blue"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/gitlab_title"
-            app:layout_constraintTop_toBottomOf="@+id/gitlab_title" />
-
+            app:layout_constraintBottom_toBottomOf="@+id/tv_github"
+            app:layout_constraintStart_toEndOf="@+id/tv_github"
+            app:layout_constraintTop_toTopOf="@+id/tv_github"
+            app:srcCompat="@drawable/svg_github" />
 
         <TextView
             android:id="@+id/dev_email_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.01"
             android:text="@string/dev_email"
-            android:textColor="@color/alice_blue"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/simpill_paragraph"
-            app:layout_constraintTop_toBottomOf="@+id/gitlab_link" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-            android:letterSpacing="0.01"
-            app:layout_constraintBottom_toBottomOf="@+id/dev_email_title"
-            app:layout_constraintStart_toEndOf="@+id/dev_email_title"
-            app:layout_constraintTop_toTopOf="@+id/dev_email_title"
-            app:srcCompat="@drawable/ic_gmail_svgrepo_com" />
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/meditrack_paragraph"
+            app:layout_constraintTop_toBottomOf="@+id/tv_github" />
 
         <TextView
             android:id="@+id/dev_email_link"
@@ -109,90 +91,31 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="32dp"
             android:autoLink="all"
-            android:fontFamily="@font/inter_reg"
             android:letterSpacing="0.01"
-            android:text="simpilldev@gmail.com"
-            android:textColor="@color/alice_blue"
-            android:textColorLink="@color/light_blue"
-            android:textSize="18sp"
+            android:text="meditrackdev@gmail.com"
+            android:textColor="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/dev_email_title"
             app:layout_constraintTop_toBottomOf="@+id/dev_email_title" />
 
         <TextView
-            android:id="@+id/simpill_paragraph_2"
+            android:id="@+id/meditrack_paragraph_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:fontFamily="@font/inter_reg"
             android:letterSpacing="0.01"
             android:lineSpacingMultiplier="1.15"
-            android:text="@string/simpillAboutParagraph_2"
-            android:textColor="@color/alice_blue"
-            android:textSize="18sp"
+            android:text="@string/meditrackAboutParagraph_2"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dev_email_link"
             tools:ignore="UnusedAttribute" />
-
-
-        <Button
-            android:id="@+id/xmr_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/dialog_bottom_btn_purple"
-            android:backgroundTint="#f26822"
-            android:drawableStart="@drawable/monero"
-            android:drawablePadding="6dp"
-            android:paddingHorizontal="14dp"
-            android:text="@string/monero"
-            android:textAllCaps="false"
-            android:textColor="@color/alice_blue"
-            app:layout_constraintEnd_toStartOf="@+id/btc_btn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/paypal_btn"
-            app:layout_constraintTop_toBottomOf="@+id/simpill_paragraph_2" />
-
-        <Button
-            android:id="@+id/btc_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/dialog_bottom_btn_purple"
-            android:backgroundTint="#f7931a"
-            android:drawableStart="@drawable/ic_bitcoin"
-            android:drawablePadding="2dp"
-            android:paddingEnd="14dp"
-            android:paddingStart="8dp"
-            android:text="@string/bitcoin"
-            android:textAllCaps="false"
-            android:textColor="@color/alice_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/xmr_btn"
-            app:layout_constraintTop_toBottomOf="@+id/simpill_paragraph_2" />
-
-        <Button
-            android:id="@+id/paypal_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/dialog_bottom_btn_purple"
-            android:backgroundTint="@color/blue_background_bottom"
-            android:drawableStart="@drawable/ic_paypal_svgrepo_com"
-            android:drawablePadding="6dp"
-            android:paddingHorizontal="14dp"
-            android:text="@string/paypal"
-            android:textAllCaps="false"
-            android:textColor="@color/alice_blue"
-            app:layout_constraintEnd_toStartOf="@+id/xmr_btn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/simpill_paragraph_2" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

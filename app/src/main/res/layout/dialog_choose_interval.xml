@@ -12,7 +12,7 @@
         android:id="@+id/custom_dialog_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_background"
+        android:background="@drawable/bg_dialog_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,11 +21,11 @@
             android:id="@+id/dialog_title_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/dialog_title_background_purple"
+            android:background="@drawable/bg_dialog_title_dark"
             android:padding="10dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:fontFamily="@font/inter_medium"
+
             android:text="@string/custom_interval_dialog_title"
             android:textColor="@color/white"
             android:textSize="35sp"
@@ -42,7 +42,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/dialog_title_textview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/dialog_title_textview"
-            app:srcCompat="@drawable/ic_clock_svgrepo_com" />
+            app:srcCompat="@drawable/svg_clock" />
 
 
         <EditText
@@ -55,7 +55,7 @@
             android:paddingStart="4dp"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:fontFamily="@font/inter_medium"
+
             android:text="2"
             android:textColor="@color/black"
             android:textSize="40sp"
@@ -70,7 +70,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/ic_add"
+            android:background="@drawable/svg_add_circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/calendar_btn"
@@ -82,7 +82,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/ic_minus"
+            android:background="@drawable/svg_delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/calendar_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:fontFamily="@font/inter_reg"
+
             android:text="@string/custom_interval_dialog_message"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -111,12 +111,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="48dp"
-        android:fontFamily="@font/inter_medium"
+
         android:text="@string/done"
         android:textSize="18sp"
         android:textAllCaps="false"
-        android:textColor="@color/alice_blue"
-        android:background="@drawable/dialog_bottom_btn_purple"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_dialog_bottom_btn_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/custom_dialog_constraint_layout"

@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/toast_background_light">
+    android:background="@drawable/bg_black">
 
     <ImageView
         android:id="@+id/custom_toast_image"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="12dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:background="@drawable/pill_bottle_color_2"
+        android:background="@drawable/svg_capsule"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,9 +34,9 @@
         android:layout_height="match_parent"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="24dp"
-        android:text="This is a custom Simpill message about Simpill."
+        android:text="This is a custom Meditrack message about Meditrack."
         android:textColor="@color/white"
-        android:fontFamily="@font/inter_reg"
+
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

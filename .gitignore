@@ -9,3 +9,10 @@
 local.properties
 TODO.txt
 /app/release/*
+/android.lock
+/android
+/caches
+/daemon
+/jdks
+/native
+/wrapper

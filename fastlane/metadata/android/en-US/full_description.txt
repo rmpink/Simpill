@@ -1,8 +1,8 @@
-<i>Simpill</i> is a free and open-source application for medication reminders. It does not contain any ads or trackers nor does it collect any data on its users. You can block internet access to Simpill and it will still work perfectly.
+<i>Meditrack</i> is a free and open-source application for medication reminders. It does not contain any ads or trackers nor does it collect any data on its users. You can block internet access to Meditrack and it will still work perfectly.
 
 <b>Features:</b>
 
-* Set pill reminders for your medications.
+* Set medication reminders for your medications.
 * Keep track of your medication supply and set a refill date.
 * Select a bottle color for your medication.
 * Dark and Light themes available.

@@ -1,1 +1,1 @@
-Fix pill amount selection dialog
+Fix medication amount selection dialog

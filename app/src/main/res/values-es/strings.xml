@@ -40,8 +40,8 @@
     <string name="theme_applied">Tema %1$s aplicado :)</string>
     <string name="select_theme_dialog_title">Seleccionar</string>
     <string name="change_theme">Cambiar Tema</string>
-    <string name="simpillAboutParagraph_1">Simpill es una aplicación de recordatorio de medicamentos gratuita y de código abierto sin rastreadorers, molestos anuncios o permisos innecesarios.\n\n¿Encontraste algún error o quiere sugerir alguna idea? No dude en contactarme a través del email simpilldev@gmail.com :)\n\nSi desea agradecer a los desarrolladores de Simpill apoyando su desarrollo futuro, puede comprar una versión de pago en la Play Store.\n\nTambién puede donar cryptomonedas para apoyar a Simpill. Haga clic en una de las siguientes direcciones para copiarla en el portapapeles.\n\n¡Toda donación es muy agradecida! :)</string>
-    <string name="device_restart_toast">Restableciendo alarmas para Simpill :)</string>
+    <string name="meditrackAboutParagraph_1">Meditrack es una aplicación de recordatorio de medicamentos gratuita y de código abierto sin rastreadorers, molestos anuncios o permisos innecesarios.\n\n¿Encontraste algún error o quiere sugerir alguna idea? No dude en contactarme a través del email meditrackdev@gmail.com :)\n\nSi desea agradecer a los desarrolladores de Meditrack apoyando su desarrollo futuro, puede comprar una versión de pago en la Play Store.\n\nTambién puede donar cryptomonedas para apoyar a Meditrack. Haga clic en una de las siguientes direcciones para copiarla en el portapapeles.\n\n¡Toda donación es muy agradecida! :)</string>
+    <string name="device_restart_toast">Restableciendo alarmas para Meditrack :)</string>
     <string name="reminder_notification_description">Es hora de tomar su medicamento: %1$s :)</string>
     <string name="welcome_dialog_title">Bienvenido/a</string>
     <string name="ok">Vale</string>
@@ -81,7 +81,7 @@
     <string name="pill_bottle_amount_toast">Le quedan %1$d pastillas de %2$s.</string>
     <string name="pill_taken_toast">Se ha tomado %1$s.</string>
     <string name="pill_reset_toast">Se ha restablecido %1$s.</string>
-    <string name="simpillAboutParagraph_2">Simpill es una aplicación completamente gratuita y no genera ningún ingreso de anuncios o venta de datos.\n\nSi desea apoyar a Simpill y a su futuro desarrollo, existen varias opciones de donación:</string>
+    <string name="meditrackAboutParagraph_2">Meditrack es una aplicación completamente gratuita y no genera ningún ingreso de anuncios o venta de datos.\n\nSi desea apoyar a Meditrack y a su futuro desarrollo, existen varias opciones de donación:</string>
     <string name="choose_times_per_day_dialog_message">¿Cuántas veces al día toma éste mediacamento?</string>
     <string name="btc_address_copied">Dirección BTC copiada :)</string>
     <string name="xmr_address_copied">Dirección XMR copiada :)</string>
@@ -91,7 +91,7 @@
     <string name="context_menu_update">Actualizar</string>
     <string name="context_menu_delete">Suprimir</string>
     <string name="context_menu_change_color">Cambiar Color</string>
-    <string name="donation_dialog_message">Si le gusta Simpill, por favor considere hacer una donación :)\n\nSSimpill es completamente gratis y de código abierto sin ningún tipo de anuncios o rastreadores.\n\nPuede donar usando uno de los siguientes botones:</string>
+    <string name="donation_dialog_message">Si le gusta Meditrack, por favor considere hacer una donación :)\n\nSMeditrack es completamente gratis y de código abierto sin ningún tipo de anuncios o rastreadores.\n\nPuede donar usando uno de los siguientes botones:</string>
     <string name="reminder_already_taken_description">"Ya ha tomado %1$s :)"</string>
     <string name="blue">Azul</string>
     <string name="grey">Gris</string>
@@ -101,7 +101,7 @@
     <string name="dark_dialogs_toast">Dialogos oscuros aplicados :)</string>
     <string name="light_dialogs_toast">Dialogos claros aplicados :)</string>
     <string name="dev_email">Email del desarrolador</string>
-    <string name="simpill_code">Código de Simpill</string>
+    <string name="meditrack_code">Código de Meditrack</string>
     <string name="append_days_to_custom_interval">Cada %1$d días</string>
     <string name="choose_times_per_day_dialog_title">Recordatorios</string>
     <string name="donate_monero">Donar con Monero</string>
