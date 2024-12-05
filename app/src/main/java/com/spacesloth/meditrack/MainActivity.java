@@ -294,12 +294,3 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
         myAdapter.notifyItemChanged(position);
     }
 }
-
-android.lock
-android/
-caches/
-daemon/
-img/logo.svg
-jdks/
-native/
-wrapper/
