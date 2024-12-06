@@ -64,6 +64,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(sql_CreateRecordTable);
     }
 
+    public void deleteDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Medications", null, null);
+        db.delete("Reminders", null, null);
+        db.delete("Records", null, null);
+    }
+
+    public void loadTestData() {
+        createMedication(new Medication("Bupropion", 300, "mg", 58, -1, -1, false, -1, 0, null, true, true));
+        createMedication(new Medication("Cambia", 50, "mg", 16, -1, -1, false, -1, 0, null, true, true));
+        createMedication(new Medication("Cyproterone", 50, "mg", 88, -1, -1, false, -1, 0, null, true, true));
+        createMedication(new Medication("Estrace", 2, "mg", 305, -1, -1, false, -1, 0, null, true, true));
+        createMedication(new Medication("Lorazepam", 0.5F, "mg", 41, -1, -1, false, -1, 0, null, true, true));
+        createMedication(new Medication("Sertraline", 300, "mg", 195, -1, -1, false, -1, 0, null, true, true));
+        createMedication(new Medication("Quetiapine", 25, "mg", 25, -1, -1, false, -1, 0, null, false, true));
+        createMedication(new Medication("Atenolol", 6.25F, "mg", 114, -1, -1, false, -1, 0, null, false, false));
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldDbNumber, int newDbNumber) {}
 
@@ -193,7 +211,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteReminder(Reminder reminder) {}
 
     private Medication returnMedicationFromCursor(Cursor c) {
-        int id = c.getInt(c.getColumnIndexOrThrow("icon"));
+        c.getInt(c.getColumnIndexOrThrow("id"));
+
         return new Medication(
                 c.getString(c.getColumnIndexOrThrow("name")),
                 c.getFloat(c.getColumnIndexOrThrow("strength")),
@@ -211,8 +230,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private Reminder returnRemindersFromCursor(Cursor c) {
+        c.getInt(c.getColumnIndexOrThrow("id"));
+
         return new Reminder(
-                c.getInt(c.getColumnIndexOrThrow("id")),
                 Boolean.getBoolean(c.getString(c.getColumnIndexOrThrow("active"))),
                 c.getFloat(c.getColumnIndexOrThrow("count")),
                 c.getLong(c.getColumnIndexOrThrow("time")),

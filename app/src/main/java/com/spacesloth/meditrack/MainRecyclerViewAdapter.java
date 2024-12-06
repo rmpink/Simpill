@@ -9,7 +9,6 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,12 +30,12 @@ public class MainRecyclerViewAdapter
 
     final Context context;
     final MainActivity mainActivity;
-    Activity myActivity;
+    Activity parentActivity;
 
     List<Medication> medications;
 
-    MainRecyclerViewAdapter(MainActivity mainActivity, Activity myActivity, Context context) {
-        this.myActivity = myActivity;
+    MainRecyclerViewAdapter(MainActivity mainActivity, Activity parentActivity, Context context) {
+        this.parentActivity = parentActivity;
         this.mainActivity = mainActivity;
         this.medications = mainActivity.medications;
         this.context = context;
@@ -55,8 +54,7 @@ public class MainRecyclerViewAdapter
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            constraintLayout =
-                    itemView.findViewById(R.id.reminder_item);
+            constraintLayout = itemView.findViewById(R.id.reminder_item);
             pillNameTextView = itemView.findViewById(R.id.tvMedicationName);
             pillTimeTextView = itemView.findViewById(R.id.tvReminderTime);
             takenBtn = itemView.findViewById(R.id.btn_take);
@@ -82,15 +80,20 @@ public class MainRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return medications.size();
+        if (medications != null) {
+            return medications.size();
+        } else {
+            return 0;
+        }
+
     }
 
     @NonNull @Override
     public MainRecyclerViewAdapter.MyViewHolder onCreateViewHolder(
             @NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(
-                LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.reminder_item, parent, false));
+            LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.reminder_item, parent, false));
     }
 
     @Override
@@ -120,7 +123,7 @@ public class MainRecyclerViewAdapter
     }
 
     private void initClasses() {
-        myActivity = new Activity();
+        parentActivity = new Activity();
         dialogs = new Dialogs(context);
         myDatabase = new DatabaseHelper(context);
         sharedPrefs = new SharedPrefs(context);

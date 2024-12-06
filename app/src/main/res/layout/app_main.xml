@@ -16,6 +16,21 @@
         android:orientation="vertical"
         tools:context="meditrack.MainActivity">
 
+        <ImageView
+            android:id="@+id/img_capsule"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:alpha="0.3"
+            app:layout_constraintBottom_toTopOf="@+id/floating_action_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_about"
+            app:srcCompat="@drawable/svg_capsule"
+            tools:ignore="ContentDescription"/>
+
         <Button
             android:id="@+id/btn_about"
             android:layout_width="30dp"
@@ -64,21 +79,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_about" />
-
-        <ImageView
-            android:id="@+id/img_capsule"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="0dp"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            android:alpha="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/floating_action_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_about"
-            app:srcCompat="@drawable/svg_capsule"
-            tools:ignore="ContentDescription"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

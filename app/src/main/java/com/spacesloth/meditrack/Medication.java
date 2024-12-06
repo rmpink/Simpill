@@ -37,6 +37,8 @@ public class Medication {
         rxNumber = _rxNumber;
         active = _active;
         visible = _visible;
+
+        this.setContentValues();
     }
 
     public Medication() {}
@@ -81,7 +83,6 @@ public class Medication {
         try (DatabaseHelper db = new DatabaseHelper(context)) {
             this.id = db.createMedication(this);
         }
-
         return this.id >= 0;
     }
 
@@ -97,8 +98,8 @@ public class Medication {
             db.deleteMedication(this);
         }
 
-        PillListener pillListener = (PillListener) context;
-        pillListener.notifyDeletedPill(this, recyclerViewPosition);
+        MedicationListener medicationListener = (MedicationListener) context;
+        medicationListener.notifyDeletedMedication(this, recyclerViewPosition);
     }
 
     public ContentValues getContentValues() {
@@ -120,12 +121,12 @@ public class Medication {
         contentValues.put("visible", visible);
     }
 
-    public interface PillListener {
+    public interface MedicationListener {
 
-        void notifyAddedPill(Medication medication);
+        void notifyAddedMedication(Medication medication);
 
-        void notifyDeletedPill(Medication medication, int position);
+        void notifyDeletedMedication(Medication medication, int position);
 
-        void notifyResetPill(int position);
+        void notifyResetMedication(int position);
     }
 }

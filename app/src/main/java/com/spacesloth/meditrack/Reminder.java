@@ -17,12 +17,8 @@ public class Reminder {
     private int interval = -1;
     private int medicationId = -1;
 
-    public Reminder(int _id, boolean _active, float _count, long _time, long _startDate,
+    public Reminder(boolean _active, float _count, long _time, long _startDate,
                     long _endDate, byte _daysOfWeek, int _interval, int _medicationId) {
-
-        if ( _id >=0) {
-            id = _id;
-        }
 
         this.active = _active;
         this.count = _count;
@@ -41,7 +37,6 @@ public class Reminder {
     }
 
     public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }
     public float getCount() { return count; }
@@ -90,7 +85,6 @@ public class Reminder {
     }
 
     public void setContentValues() {
-        contentValues.put("id", id);
         contentValues.put("active", active);
         contentValues.put("count", count);
         contentValues.put("time", time);

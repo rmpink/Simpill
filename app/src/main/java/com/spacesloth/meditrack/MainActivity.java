@@ -6,30 +6,25 @@ import static com.spacesloth.meditrack.Meditrack.IS_CRASH_INTENT_KEY_STRING;
 
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class MainActivity extends AppCompatActivity implements Medication.PillListener {
+public class MainActivity extends AppCompatActivity implements Medication.MedicationListener {
 
     private final DatabaseHelper db = new DatabaseHelper(this);
-    private final ArrayHelper arrayHelper = new ArrayHelper();
     private final Toasts toasts = new Toasts(this);
     public List<Medication> medications;
 
@@ -39,9 +34,8 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
 
     RecyclerView recyclerView;
 
-    MainRecyclerViewAdapter myAdapter;
+    MainRecyclerViewAdapter recyclerViewAdapter;
     Button settingsButton, aboutButton, fab;
-    ImageView imgPill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,28 +50,33 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
                 && intent.hasExtra(CRASH_DATA_INTENT_KEY_STRING)) {
             dialogs.getCrashDialog(intent.getStringExtra(CRASH_DATA_INTENT_KEY_STRING)).show();
         }
-        loadMedicationsFromDatabase();
+
+//        loadMedicationsFromDatabase();
+//        DatabaseHelper db = new DatabaseHelper(this);
+//        db.deleteDatabase();
+//        db.loadTestData();
+
         setContentViewAndDesign();
         findViewsByIds();
         createRecyclerView();
         makeRecyclerViewItemsSwipable();
         initiateButtons();
-//        isSqlDatabaseEmpty();
+        isSqlDatabaseEmpty();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-//        boolean newPillAdded = intent.hasExtra(NEW_PILL_INTENT_KEY);
-//        int pk = intent.getIntExtra(NEW_PILL_INTENT_KEY, -1);
-//
-//        if(newPillAdded && pk != -1) {
-//            Medication[] newMedicationArray = arrayHelper.addPillToPillArray(medications, myDatabase.getPill(intent.getIntExtra(NEW_PILL_INTENT_KEY, -1)));
-//            medications = newMedicationArray;
-//            myAdapter.medications = newMedicationArray;
-//            myAdapter.notifyItemInserted(newMedicationArray.length - 1);
-//        }
-//        onNotificationClicked(intent);
+        boolean newMedicationAdded = intent.hasExtra("new_med_id");
+        int newMedId = intent.getIntExtra("new_med_id", -1);
+        Medication newMed = Medication.getById(this, newMedId);
+
+        if(newMedicationAdded && newMedId != -1) {
+            medications.add(newMed);
+            recyclerViewAdapter.medications.add(newMed);
+            recyclerViewAdapter.notifyItemInserted(medications.size() - 1);
+        }
+        onNotificationClicked(intent);
     }
 
     private void onNotificationClicked(Intent intent) {
@@ -118,12 +117,12 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
 
                         switch (direction) {
                             case ItemTouchHelper.RIGHT:
-                                myAdapter.notifyItemChanged(position);
+                                recyclerViewAdapter.notifyItemChanged(position);
 //                                dialogs.getPillDeletionDialog(medication, position).show();
                                 break;
                             case ItemTouchHelper.LEFT:
-                                myAdapter.notifyItemChanged(position);
-                                openUpdateMedication(medication);
+                                recyclerViewAdapter.notifyItemChanged(position);
+                                openEditMedication(medication);
                                 break;
                         }
                     }
@@ -189,20 +188,19 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
     }
 
     private void initiateButtons() {
-        settingsButton.setOnClickListener(v -> openSettingsActivity());
-        aboutButton.setOnClickListener(v -> openAboutActivity());
-        fab.setOnClickListener(v -> openCreateMedicationActivity());
+        settingsButton.setOnClickListener(v -> openSettings());
+        aboutButton.setOnClickListener(v -> openAbout());
+        fab.setOnClickListener(v -> openEditMedication(null));
     }
 
     private void loadMedicationsFromDatabase() {
         medications = db.getAllMedications(true, true);
-//        medications = new ArrayList<>();
     }
 
     private void createRecyclerView() {
-        myAdapter = new MainRecyclerViewAdapter(MainActivity.this, getParent(), this);
+        recyclerViewAdapter = new MainRecyclerViewAdapter(MainActivity.this, getParent(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(myAdapter);
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     public boolean onContextItemSelected(MenuItem item) {
@@ -210,23 +208,23 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
 
         switch (item.getItemId()) {
             case 1:
-                openUpdateMedication(medication);
+                openEditMedication(medication);
                 break;
             case 2:
 //                dialogs.getPillDeletionDialog(medication, item.getGroupId() - 1).show();
+                db.deleteMedication(medication);
                 break;
             default:
                 break;
         }
         return super.onContextItemSelected(item);
     }
-//
-//    void isSqlDatabaseEmpty() {
-//        if (db.getMedsCount(true, true) == 0) {
-//            recyclerView.setVisibility(View.GONE);
-//            fab.setVisibility(View.GONE);
-//        }
-//    }
+
+    void isSqlDatabaseEmpty() {
+        if (db.getMedsCount(true, true) == 0) {
+            recyclerView.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -243,25 +241,24 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
         }
     }
 
-    private void openUpdateMedication(Medication medication) {
+    private void openEditMedication(Medication medication) {
         Intent intent = new Intent(this, MedicationsEditActivity.class);
-        intent.putExtra("id", medication.getId());
+
+        if (medication != null) {
+            intent.putExtra("id", medication.getId());
+        }
+
         startActivity(intent);
         backPresses = 0;
     }
 
-    private void openCreateMedicationActivity() {
-        Intent intent = new Intent(this, MedicationsEditActivity.class);
-        startActivity(intent);
-    }
-
-    private void openSettingsActivity() {
+    private void openSettings() {
         Intent intent = new Intent(MainActivity.this, Settings.class);
         startActivity(intent);
         backPresses = 0;
     }
 
-    private void openAboutActivity() {
+    private void openAbout() {
         Intent intent = new Intent(this, About.class);
         startActivity(intent);
         backPresses = 0;
@@ -273,24 +270,22 @@ public class MainActivity extends AppCompatActivity implements Medication.PillLi
     }
 
     @Override
-    public void notifyAddedPill(Medication medication) {
-//        Medication[] newMedicationArray = arrayHelper.addMedicationToArray(myAdapter.medications, medication);
-//        this.medications = newMedicationArray;
-//        myAdapter.medications = newMedicationArray;
-//        myAdapter.notifyItemInserted(newMedicationArray.length - 1);
+    public void notifyAddedMedication(Medication medication) {
+        this.medications.add(medication);
+        recyclerViewAdapter.medications.add(medication);
+        recyclerViewAdapter.notifyItemInserted(this.medications.size() - 1);
     }
 
     @Override
-    public void notifyDeletedPill(Medication medication, int position) {
-//        Medication[] newMedicationArray = arrayHelper.deleteMedicationFromArray(myAdapter.medications, medication);
-//        this.medications = newMedicationArray;
-//        myAdapter.medications = newMedicationArray;
-//        myAdapter.notifyItemRemoved(position);
-//        myAdapter.notifyItemRangeChanged(position, newMedicationArray.length);
+    public void notifyDeletedMedication(Medication medication, int position) {
+        this.medications.remove(medication);
+        recyclerViewAdapter.medications.remove(medication);
+        recyclerViewAdapter.notifyItemRemoved(position);
+        recyclerViewAdapter.notifyItemRangeChanged(position, this.medications.size());
     }
 
     @Override
-    public void notifyResetPill(int position) {
-        myAdapter.notifyItemChanged(position);
+    public void notifyResetMedication(int position) {
+        recyclerViewAdapter.notifyItemChanged(position);
     }
 }
