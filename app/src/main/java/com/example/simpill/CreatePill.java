@@ -27,10 +27,12 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.Calendar;
 
 public class CreatePill extends AppCompatActivity
         implements Dialogs.PillNameDialogListener,
+                Dialogs.PillTakeAmountDialogListener,
                 Dialogs.PillAmountDialogListener,
                 Dialogs.ChooseFrequencyDialogListener,
                 Dialogs.PillReminderAmountDialogListener,
@@ -46,8 +48,9 @@ public class CreatePill extends AppCompatActivity
     private final Toasts toasts = new Toasts(this);
 
     Button createNewPillButton;
-    ImageView pillBottleImage, clockImage, calendarImage, blisterPackImage;
+    ImageView pillBottleImage, pillTakeAmountImage, clockImage, calendarImage, blisterPackImage;
     TextView pillNameTextView,
+            pillTakeAmountTextView,
             pillTimesTextView,
             pillTimeIntervalText,
             pillTimeAlarmTypeText,
@@ -81,6 +84,7 @@ public class CreatePill extends AppCompatActivity
             frequencyTextView;
     Button doneBtn, playBtn, pauseBtn;
     LottieAnimationView pillNameAnimation,
+            pillTakeAmountAnimation,
             pillTimeAnimation,
             pillDateAnimation,
             pillSupplyAnimation;
@@ -107,6 +111,7 @@ public class CreatePill extends AppCompatActivity
         if (intent.hasExtra(PRIMARY_KEY_INTENT_KEY_STRING)) {
             userPill = myDatabase.getPill(intent.getIntExtra(PRIMARY_KEY_INTENT_KEY_STRING, -1));
             pillNameTextView.setText(userPill.getName());
+            pillTakeAmountTextView.setText(String.valueOf(userPill.getTakeAmount()));
             pillTimesTextView.setText(
                     is24HrFormat ? userPill.getTimes24HrFormat() : userPill.getTimes12HrFormat());
 
@@ -266,14 +271,17 @@ public class CreatePill extends AppCompatActivity
 
     private void findViewsByIds() {
         pillBottleImage = findViewById(R.id.pill_bottle_image);
+        pillTakeAmountImage = findViewById(R.id.take_amount_image);
         clockImage = findViewById(R.id.clock_image);
         calendarImage = findViewById(R.id.calendar_image);
         blisterPackImage = findViewById(R.id.blister_pack_image);
         pillNameAnimation = findViewById(R.id.pill_name_lottieview);
+        pillTakeAmountAnimation = findViewById(R.id.pill_take_amount_lottieview);
         pillTimeAnimation = findViewById(R.id.pill_time_lottieview);
         pillDateAnimation = findViewById(R.id.pill_date_lottieview);
         pillSupplyAnimation = findViewById(R.id.pill_supply_lottieview);
         pillNameTextView = findViewById(R.id.enterPillName);
+        pillTakeAmountTextView = findViewById(R.id.enterTakeAmount);
         pillTimesTextView = findViewById(R.id.enter_pill_time_textview);
         pillTimeIntervalText = findViewById(R.id.pill_frequency_textview);
         pillTimeAlarmTypeText = findViewById(R.id.alarm_type_textview);
@@ -289,6 +297,7 @@ public class CreatePill extends AppCompatActivity
     private void initiateTexts() {
         interMedium = ResourcesCompat.getFont(this, R.font.inter_medium);
         pillNameTextView.setTypeface(interMedium);
+        pillTakeAmountTextView.setTypeface(interMedium);
         pillTimesTextView.setTypeface(interMedium);
         pillStockupTextView.setTypeface(interMedium);
         pillSupplyTextView.setTypeface(interMedium);
@@ -296,6 +305,8 @@ public class CreatePill extends AppCompatActivity
 
         pillBottleImage.setOnClickListener(v -> chooseName());
         pillNameTextView.setOnClickListener(v -> chooseName());
+        pillTakeAmountImage.setOnClickListener(v -> chooseTakeAmount());
+        pillTakeAmountTextView.setOnClickListener(v -> chooseTakeAmount());
         clockImage.setOnClickListener(v -> chooseTime());
         pillTimesTextView.setOnClickListener(v -> chooseTime());
         pillTimeAlarmTypeText.setOnClickListener(v -> chooseTime());
@@ -308,6 +319,10 @@ public class CreatePill extends AppCompatActivity
 
     private void chooseName() {
         dialogs.getChooseNameDialog(userPill.getName()).show();
+    }
+
+    private void chooseTakeAmount() {
+        dialogs.getChooseTakeAmountDialog(userPill.getTakeAmount()).show();
     }
 
     private void chooseTime() {
@@ -347,7 +362,9 @@ public class CreatePill extends AppCompatActivity
     }
 
     private Boolean areTextViewsNonEmpty() {
-        if(pillNameTextView.getText().toString().trim().length() != 0 && pillTimesTextView.getText().toString().trim().length() != 0) {
+        if(!pillNameTextView.getText().toString().trim().isEmpty() &&
+                !pillTakeAmountTextView.getText().toString().trim().isEmpty() &&
+                !pillTimesTextView.getText().toString().trim().isEmpty()) {
             createNewPillButton.setAlpha(1f);
             return true;
         } else {
@@ -365,8 +382,17 @@ public class CreatePill extends AppCompatActivity
     }
 
     @Override
+    public void applyPillTakeAmount(String userPillTakeAmount) {
+        userPill.setTakeAmount(Float.parseFloat(userPillTakeAmount));
+        pillTakeAmountTextView.setText("Take " + userPillTakeAmount);
+        pillTakeAmountTextView.setTypeface(montserratSemiBold);
+        pillTakeAmountTextView.setPadding(0, 0, 0, 0);
+        pillTakeAmountAnimation.playAnimation();
+    }
+
+    @Override
     public void applyPillSupply(String userPillSupply) {
-        userPill.setSupply(Integer.parseInt(userPillSupply));
+        userPill.setSupply(Float.parseFloat(userPillSupply));
         pillSupplyTextView.setText(userPillSupply);
         pillSupplyTextView.setTypeface(montserratSemiBold);
         pillSupplySubtext.setVisibility(View.GONE);

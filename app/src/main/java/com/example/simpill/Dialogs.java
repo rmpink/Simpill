@@ -380,7 +380,74 @@ public class Dialogs extends AppCompatDialogFragment {
         return dialog;
     }
 
-    public Dialog getChooseSupplyAmountDialog(int supply) {
+    public Dialog getChooseTakeAmountDialog(float takeAmount) {
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_pill_amount, null);
+        Dialog dialog = new AlertDialog.Builder(context).setView(dialogView).create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+
+        ConstraintLayout dialogLayout =
+                dialogView.findViewById(R.id.custom_dialog_constraint_layout);
+        TextView titleTextView = dialogView.findViewById(R.id.dialog_title_textview);
+        ImageView pillIcon = dialogView.findViewById(R.id.imageView13);
+        Button doneBtn = dialogView.findViewById(R.id.done_btn);
+        Button addBtn = dialogView.findViewById(R.id.addBtn);
+        Button minusBtn = dialogView.findViewById(R.id.minusBtn);
+        EditText enterAmountEditText = dialogView.findViewById(R.id.calendar_btn);
+
+        if (isDarkMode(context)) {
+            dialogLayout.setBackground(
+                    AppCompatResources.getDrawable(context, R.drawable.dialog_background_dark));
+            enterAmountEditText.setTextColor(
+                    ResourcesCompat.getColor(context.getResources(), R.color.alice_blue, null));
+            titleTextView.setBackground(
+                    AppCompatResources.getDrawable(
+                            context, R.drawable.dialog_title_background_dark));
+            doneBtn.setBackground(
+                    AppCompatResources.getDrawable(context, R.drawable.dialog_bottom_btn_dark));
+        }
+
+        super.onAttach(context);
+        PillTakeAmountDialogListener pillTakeAmountDialogListener = (PillTakeAmountDialogListener) context;
+
+        enterAmountEditText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        if (takeAmount > 0) {
+            enterAmountEditText.setText(String.valueOf(takeAmount));
+        }
+
+        doneBtn.setOnClickListener(
+                view -> {
+                    pillTakeAmountDialogListener.applyPillTakeAmount(
+                            enterAmountEditText.getText().toString());
+                    dialog.dismiss();
+                });
+
+        addBtn.setOnClickListener(
+                view -> {
+                    float pillAmount;
+                    if (enterAmountEditText.getText().toString().equals("")) {
+                        pillAmount = 1;
+                    } else {
+                        pillAmount = Float.parseFloat(enterAmountEditText.getText().toString());
+                    }
+                    enterAmountEditText.setText(String.valueOf(pillAmount + 1));
+                });
+        minusBtn.setOnClickListener(
+                view -> {
+                    float pillAmount;
+                    if (enterAmountEditText.getText().toString().equals("")) {
+                        pillAmount = 1;
+                    } else {
+                        pillAmount = Float.parseFloat(enterAmountEditText.getText().toString());
+                    }
+                    if (!(pillAmount - 1 <= 0)) {
+                        enterAmountEditText.setText(String.valueOf(pillAmount - 1));
+                    }
+                });
+
+        return dialog;
+    }
+
+    public Dialog getChooseSupplyAmountDialog(float supply) {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_pill_amount, null);
         Dialog dialog = new AlertDialog.Builder(context).setView(dialogView).create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
@@ -409,7 +476,7 @@ public class Dialogs extends AppCompatDialogFragment {
         super.onAttach(context);
         PillAmountDialogListener pillAmountDialogListener = (PillAmountDialogListener) context;
 
-        enterAmountEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        enterAmountEditText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
         if (supply > 0) {
             enterAmountEditText.setText(String.valueOf(supply));
         }
@@ -423,21 +490,21 @@ public class Dialogs extends AppCompatDialogFragment {
 
         addBtn.setOnClickListener(
                 view -> {
-                    int pillAmount;
+                    float pillAmount;
                     if (enterAmountEditText.getText().toString().equals("")) {
                         pillAmount = 30;
                     } else {
-                        pillAmount = Integer.parseInt(enterAmountEditText.getText().toString());
+                        pillAmount = Float.parseFloat(enterAmountEditText.getText().toString());
                     }
                     enterAmountEditText.setText(String.valueOf(pillAmount + 1));
                 });
         minusBtn.setOnClickListener(
                 view -> {
-                    int pillAmount;
+                    float pillAmount;
                     if (enterAmountEditText.getText().toString().equals("")) {
                         pillAmount = 30;
                     } else {
-                        pillAmount = Integer.parseInt(enterAmountEditText.getText().toString());
+                        pillAmount = Float.parseFloat(enterAmountEditText.getText().toString());
                     }
                     if (!(pillAmount - 1 <= 0)) {
                         enterAmountEditText.setText(String.valueOf(pillAmount - 1));
@@ -1090,6 +1157,10 @@ public class Dialogs extends AppCompatDialogFragment {
 
     public interface PillNameDialogListener {
         void applyPillName(String userPillName);
+    }
+
+    public interface PillTakeAmountDialogListener {
+        void applyPillTakeAmount(String pillTakeAmount);
     }
 
     public interface PillAmountDialogListener {
