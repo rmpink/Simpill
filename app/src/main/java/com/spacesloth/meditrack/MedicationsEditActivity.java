@@ -53,8 +53,8 @@ public class MedicationsEditActivity extends AppCompatActivity
 
     private void getAndSetIntentData() {
         Intent intent = getIntent();
-        if (intent.hasExtra("id")) {
-            med = Medication.getById(this, intent.getIntExtra("id", -1));
+        if (intent.hasExtra("med_taken_id")) {
+            med = Medication.getById(this, intent.getIntExtra("med_taken_id", -1));
             etMedication.setText(med.getName());
             etStrength.setText(String.valueOf(med.getStrength()));
             ArrayAdapter<String> spinnerAdapter = (ArrayAdapter<String>) spnUnits.getAdapter();
@@ -71,9 +71,9 @@ public class MedicationsEditActivity extends AppCompatActivity
                         med.getRefillCount() + " left.\nReminder time: " + time.toString();
 
                 tvRefillDetails.setText(reminderText);
-                btnAddMedication.setText("Update");
             }
 
+            btnAddMedication.setText("Update");
             btnAddMedication.setOnClickListener(v -> updateMedication());
         }
     }

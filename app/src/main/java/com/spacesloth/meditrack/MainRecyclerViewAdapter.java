@@ -85,7 +85,6 @@ public class MainRecyclerViewAdapter
         } else {
             return 0;
         }
-
     }
 
     @NonNull @Override
@@ -159,8 +158,8 @@ public class MainRecyclerViewAdapter
     }
 
     private void initButtons(MyViewHolder holder, Medication medication, int position) {
-//        holder.takenBtn.setOnClickListener(
-//                v -> {
+        holder.takenBtn.setOnClickListener(
+                v -> {
 //                    medication.takePill(context);
 //                    String time = medication.getTimeTaken();
 //                    String takenAtTime = context.getString(R.string.taken_at, time);
@@ -171,14 +170,14 @@ public class MainRecyclerViewAdapter
 //                    holder.resetBtn.setVisibility(View.VISIBLE);
 //                    holder.resetBtn.setClickable(true);
 //                    if (sharedPrefs.getPillSoundPref()) audioHelper.getTakenPlayer().start();
-//                    toasts.showCustomToast(
-//                            context.getString(R.string.pill_taken_toast, medication.getName()));
-//                });
+                    toasts.showCustomToast(
+                            context.getString(R.string.pill_taken_toast, medication.getName()));
+                });
 
         holder.bigButton.setOnClickListener(
                 view -> {
                     Intent intent = new Intent(context, MedicationsEditActivity.class);
-                    intent.putExtra("pill_taken_id", medication.getId());
+                    intent.putExtra("med_taken_id", medication.getId());
                     context.startActivity(intent);
                     MainActivity.backPresses = 0;
                 });

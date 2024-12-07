@@ -46,6 +46,7 @@ public class Medication {
     public static Medication getById(Context ctx, int _id) {
         DatabaseHelper db = new DatabaseHelper(ctx);
         Medication med = db.readMedication(_id);
+        med.id = _id;
         db.close();
         return med;
     }

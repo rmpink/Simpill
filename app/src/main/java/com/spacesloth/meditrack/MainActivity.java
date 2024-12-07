@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
             dialogs.getCrashDialog(intent.getStringExtra(CRASH_DATA_INTENT_KEY_STRING)).show();
         }
 
-//        loadMedicationsFromDatabase();
-//        DatabaseHelper db = new DatabaseHelper(this);
-//        db.deleteDatabase();
-//        db.loadTestData();
+        DatabaseHelper db = new DatabaseHelper(this);
+        db.deleteDatabase();
+        db.loadTestData();
 
+        loadMedicationsFromDatabase();
         setContentViewAndDesign();
         findViewsByIds();
         createRecyclerView();

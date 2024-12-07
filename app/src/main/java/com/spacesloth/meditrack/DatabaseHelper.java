@@ -109,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Reminder> getAllReminders(Boolean active) {
         List<Reminder> remindersList = new ArrayList<Reminder>();
         String query = "SELECT * FROM Reminders WHERE " +
-                "active = " + active.toString().toUpperCase() + ";";
+                "active=" + active.toString().toUpperCase() + ";";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -124,8 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int getMedsCount(Boolean visible, Boolean active) {
         String query = "SELECT COUNT(id) FROM Medications WHERE " +
-                "visible = " + visible.toString().toUpperCase() + " AND " +
-                "active = " + active.toString().toUpperCase() + ";";
+                "visible=" + visible.toString().toUpperCase() + " AND " +
+                "active=" + active.toString().toUpperCase() + ";";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -145,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int getRemindersCount(Boolean active) {
         String query = "SELECT COUNT(id) FROM Reminders WHERE " +
-                "active = " + active.toString().toUpperCase() + ";";
+                "active=" + active.toString().toUpperCase() + ";";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -174,7 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Medication readMedication(long id) {
-        String query = "SELECT * FROM Medications WHERE id = " + id + ";";
+        String query = "SELECT * FROM Medications WHERE id=" + id + ";";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -191,14 +191,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.update("Medications",
                 med.getContentValues(),
-                "id = ?",
+                "id=?",
                 new String[] { String.valueOf(med.getId()) });
     }
 
     public void deleteMedication(Medication med) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete("Medications", "id = ?",
+        db.delete("Medications", "id=?",
                 new String[] { String.valueOf(med.getId()) });
     }
 
@@ -211,8 +211,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteReminder(Reminder reminder) {}
 
     private Medication returnMedicationFromCursor(Cursor c) {
-        c.getInt(c.getColumnIndexOrThrow("id"));
-
         return new Medication(
                 c.getString(c.getColumnIndexOrThrow("name")),
                 c.getFloat(c.getColumnIndexOrThrow("strength")),
@@ -230,8 +228,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private Reminder returnRemindersFromCursor(Cursor c) {
-        c.getInt(c.getColumnIndexOrThrow("id"));
-
         return new Reminder(
                 Boolean.getBoolean(c.getString(c.getColumnIndexOrThrow("active"))),
                 c.getFloat(c.getColumnIndexOrThrow("count")),

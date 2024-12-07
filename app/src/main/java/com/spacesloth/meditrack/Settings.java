@@ -40,12 +40,11 @@ public class Settings extends AppCompatActivity implements Dialogs.SettingsDialo
                 new OnBackPressedCallback(true) {
                     @Override
                     public void handleOnBackPressed() {
-                        finish();
-//                        if (settingsChanged) {
-//                            Process.killProcess(Process.myPid());
-//                        } else {
-//                            finish();
-//                        }
+                        if (settingsChanged) {
+                            Process.killProcess(Process.myPid());
+                        } else {
+                            finish();
+                        }
                     }
                 });
     }
@@ -68,56 +67,55 @@ public class Settings extends AppCompatActivity implements Dialogs.SettingsDialo
             int medsCount = db.getMedsCount(true, true);
             int remindersCount = db.getRemindersCount(true);
             String changes =  " " + medsCount + " meds, " + remindersCount + " reminders.";
-            toasts.showCustomToast("Deleted the database." + changes);
+            toasts.showCustomToast("Loaded test data." + changes);
             settingsChanged = true;
         });
         btnBack.setOnClickListener(
             view -> {
-                finish();
-//                if (settingsChanged) {
-//                    Process.killProcess(Process.myPid());
-//                } else {
-//                    finish();
-//                }
+                if (settingsChanged) {
+                    Process.killProcess(Process.myPid());
+                } else {
+                    finish();
+                }
             }
         );
-//        darkDialogsSwitch.setOnClickListener(
-//                view -> {
-//                    sharedPrefs.setDarkDialogsPref(darkDialogsSwitch.isChecked());
-//                    toasts.showCustomToast(
-//                            sharedPrefs.getDarkDialogsPref()
-//                                    ? getString(R.string.dark_dialogs_toast)
-//                                    : getString(R.string.light_dialogs_toast));
-//                    settingsChanged = true;
-//                });
-//        clockIs24HrSwitch.setOnClickListener(
-//                view -> {
-//                    sharedPrefs.set24HourTimeFormatPref(clockIs24HrSwitch.isChecked());
-//                    toasts.showCustomToast(
-//                            sharedPrefs.get24HourFormatPref()
-//                                    ? getString(R.string.time_format_24hr_toast)
-//                                    : getString(R.string.time_format_12hr_toast));
-//                    settingsChanged = true;
-//                });
-//        appSoundsSwitch.setOnClickListener(
-//                view -> {
-//                    sharedPrefs.setPillSoundPref(appSoundsSwitch.isChecked());
-//                    toasts.showCustomToast(
-//                            sharedPrefs.getPillSoundPref()
-//                                    ? getString(R.string.app_sounds_enabled)
-//                                    : getString(R.string.app_sounds_disabled));
-//                    settingsChanged = true;
-//                });
-//        permanentNotificationsSwitch.setOnClickListener(
-//                view -> {
-//                    sharedPrefs.setStickyNotificationsPref(
-//                            permanentNotificationsSwitch.isChecked());
-//                    toasts.showCustomToast(
-//                            sharedPrefs.getStickyNotificationsPref()
-//                                    ? getString(R.string.sticky_notifications_enabled_toast)
-//                                    : getString(R.string.sticky_notifications_disabled_toast));
-//                    settingsChanged = true;
-//                });
+        darkDialogsSwitch.setOnClickListener(
+                view -> {
+                    sharedPrefs.setDarkDialogsPref(darkDialogsSwitch.isChecked());
+                    toasts.showCustomToast(
+                            sharedPrefs.getDarkDialogsPref()
+                                    ? getString(R.string.dark_dialogs_toast)
+                                    : getString(R.string.light_dialogs_toast));
+                    settingsChanged = true;
+                });
+        clockIs24HrSwitch.setOnClickListener(
+                view -> {
+                    sharedPrefs.set24HourTimeFormatPref(clockIs24HrSwitch.isChecked());
+                    toasts.showCustomToast(
+                            sharedPrefs.get24HourFormatPref()
+                                    ? getString(R.string.time_format_24hr_toast)
+                                    : getString(R.string.time_format_12hr_toast));
+                    settingsChanged = true;
+                });
+        appSoundsSwitch.setOnClickListener(
+                view -> {
+                    sharedPrefs.setPillSoundPref(appSoundsSwitch.isChecked());
+                    toasts.showCustomToast(
+                            sharedPrefs.getPillSoundPref()
+                                    ? getString(R.string.app_sounds_enabled)
+                                    : getString(R.string.app_sounds_disabled));
+                    settingsChanged = true;
+                });
+        permanentNotificationsSwitch.setOnClickListener(
+                view -> {
+                    sharedPrefs.setStickyNotificationsPref(
+                            permanentNotificationsSwitch.isChecked());
+                    toasts.showCustomToast(
+                            sharedPrefs.getStickyNotificationsPref()
+                                    ? getString(R.string.sticky_notifications_enabled_toast)
+                                    : getString(R.string.sticky_notifications_disabled_toast));
+                    settingsChanged = true;
+                });
     }
 
     private void setContentViewBasedOnThemeSetting() {
