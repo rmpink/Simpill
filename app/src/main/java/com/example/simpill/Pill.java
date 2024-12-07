@@ -7,6 +7,7 @@ import static com.example.simpill.DatabaseHelper.COLUMN_ALARM_TYPE;
 import static com.example.simpill.DatabaseHelper.COLUMN_BOTTLECOLOR;
 import static com.example.simpill.DatabaseHelper.COLUMN_CUSTOM_ALARM_URI;
 import static com.example.simpill.DatabaseHelper.COLUMN_FREQUENCY;
+import static com.example.simpill.DatabaseHelper.COLUMN_AMOUNT;
 import static com.example.simpill.DatabaseHelper.COLUMN_ISTAKEN;
 import static com.example.simpill.DatabaseHelper.COLUMN_START_DATE;
 import static com.example.simpill.DatabaseHelper.COLUMN_STOCKUP;
@@ -61,8 +62,9 @@ public class Pill {
     private String times24HrFormat = NULL_DB_ENTRY_STRING;
     private String times12HrFormat = NULL_DB_ENTRY_STRING;
     private int frequency = 1;
+    private float takeAmount = 1;
     private int taken = 0;
-    private int supply = -1;
+    private float supply = -1;
     private int alarmType = DatabaseHelper.ALARM;
     private long[] alarmReminderTimes;
     private int[] alarmRequestCodes;
@@ -76,9 +78,10 @@ public class Pill {
             String stockupDate,
             Uri customAlarmUri,
             int frequency,
+            float takeAmount,
             int taken,
             String timeTaken,
-            int supply,
+            float supply,
             int alarmType,
             int alarmsSet,
             int bottleColor) {
@@ -89,6 +92,7 @@ public class Pill {
         setStockupDate(stockupDate);
         setCustomAlarmUri(customAlarmUri);
         setFrequency(frequency);
+        setTakeAmount(takeAmount);
         setTaken(taken);
         setTimeTaken(timeTaken);
         setSupply(supply);
@@ -106,9 +110,10 @@ public class Pill {
             String stockupDate,
             Uri customAlarmUri,
             int frequency,
+            float takeAmount,
             int taken,
             String timeTaken,
-            int supply,
+            float supply,
             int alarmType,
             int alarmsSet,
             int bottleColor) {
@@ -120,6 +125,7 @@ public class Pill {
         setStockupDate(stockupDate);
         setCustomAlarmUri(customAlarmUri);
         setFrequency(frequency);
+        setTakeAmount(takeAmount);
         setTaken(taken);
         setTimeTaken(timeTaken);
         setSupply(supply);
@@ -132,14 +138,14 @@ public class Pill {
     public Pill() {}
 
     public void takePill(Context context) {
-        setSupply(getSupply() - 1);
+        setSupply(getSupply() - this.takeAmount);
         setTaken(PILL_TAKEN_VALUE);
         setTimeTaken(dateTimeManager.getCurrentTimeString());
         updatePillInDatabase(context);
     }
 
     public void resetPill(Context context, int recyclerViewPosition) {
-        setSupply(getSupply() + 1);
+        setSupply(getSupply() + this.takeAmount);
         setTaken(PILL_NOT_TAKEN_VALUE);
         setTimeTaken(NULL_DB_ENTRY_STRING);
         setAlarm(context);
@@ -656,6 +662,13 @@ public class Pill {
         contentValues.put(COLUMN_FREQUENCY, frequency);
     }
 
+    public float getTakeAmount() { return takeAmount; }
+
+    public void setTakeAmount(float takeAmount) {
+        this.takeAmount = takeAmount;
+        contentValues.put(COLUMN_AMOUNT, takeAmount);
+    }
+
     public int getTaken() {
         return taken;
     }
@@ -665,11 +678,11 @@ public class Pill {
         contentValues.put(COLUMN_ISTAKEN, taken);
     }
 
-    public int getSupply() {
+    public float getSupply() {
         return supply;
     }
 
-    public void setSupply(int supply) {
+    public void setSupply(float supply) {
         this.supply = supply;
         contentValues.put(COLUMN_SUPPLY, supply);
     }

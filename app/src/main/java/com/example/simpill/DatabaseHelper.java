@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TITLE = "PillName";
     public static final String COLUMN_TIME = "PillTime";
     public static final String COLUMN_FREQUENCY = "PillFrequency";
+    public static final String COLUMN_AMOUNT = "Amount";
     public static final String COLUMN_START_DATE = "StartDate";
     public static final String COLUMN_STOCKUP = "PillStockup";
     public static final String COLUMN_SUPPLY = "PillSupply";
@@ -58,12 +59,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         + " TEXT, "
                         + COLUMN_FREQUENCY
                         + " INTEGER, "
+                        + COLUMN_AMOUNT
+                        + " REAL, "
                         + COLUMN_START_DATE
                         + " TEXT, "
                         + COLUMN_STOCKUP
                         + " TEXT, "
                         + COLUMN_SUPPLY
-                        + " INTEGER, "
+                        + " REAL, "
                         + COLUMN_ISTAKEN
                         + " INTEGER, "
                         + COLUMN_TIMETAKEN
@@ -200,9 +203,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STOCKUP)),
                 Uri.parse(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOM_ALARM_URI))),
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FREQUENCY)),
+                cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT)),
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ISTAKEN)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIMETAKEN)),
-                cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SUPPLY)),
+                cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_SUPPLY)),
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ALARM_TYPE)),
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ALARMSSET)),
                 cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_BOTTLECOLOR))
