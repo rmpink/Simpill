@@ -8,19 +8,15 @@ import android.content.res.Configuration;
 
 public class SharedPrefs {
 
-    public static final String OPEN_COUNT_FILENAME = "open_count";
-    public static final String DARK_DIALOGS_FILENAME = "dark_dialogs";
-    public static final String SELECTED_THEME_FILENAME = "User Theme";
-    public static final String IS_24HR_BOOLEAN_FILENAME = "Is 24Hr Boolean";
-    public static final String PERMANENT_NOTIFICATIONS_FILENAME = "Permanent Notification Boolean";
-    public static final String SOUND_ON_FILENAME = "sound";
+    public static final String APP_METADATA = "app_metadata";
+    public static final String APP_SETTINGS = "app_settings";
 
-    public static final String DARK_DIALOGS_TAG = "Dark Dialogs";
-    public static final String OPEN_COUNT_TAG = "Open Count";
-    public static final String USER_THEME_TAG = "User Theme";
-    public static final String USER_IS_24HR_TAG = "User Is24Hr";
-    public static final String USER_PERMANENT_NOTIFICATIONS_TAG = "User PermanentNotifications";
-    public static final String SOUND_ON_TAG = "Sound On";
+    public static final String ENABLE_DARK_DIALOGS = "enable_dark_dialogs";
+    public static final String APP_OPEN_COUNTER = "app_open_counter";
+    public static final String APP_THEME = "app_theme";
+    public static final String ENABLE_24HR_TIME = "enable_24hr_time";
+    public static final String ENABLE_PERMANENT_NOTIFICATIONS = "enable_permanent_notifications";
+    public static final String ENABLE_APP_SOUND = "enable_app_sound";
 
     private final Context context;
 
@@ -28,79 +24,79 @@ public class SharedPrefs {
         this.context = context;
     }
 
-    public void setDarkDialogsPref(boolean darkDialogs) {
-        context.getSharedPreferences(DARK_DIALOGS_FILENAME, Context.MODE_PRIVATE)
+    public int getOpenCountPref() {
+        return context.getSharedPreferences(APP_METADATA, Context.MODE_PRIVATE)
+                .getInt(APP_OPEN_COUNTER, 0);
+    }
+
+    public void setOpenCountPref(int openCount) {
+        context.getSharedPreferences(APP_METADATA, Context.MODE_PRIVATE)
                 .edit()
-                .putBoolean(DARK_DIALOGS_TAG, darkDialogs)
+                .putInt(APP_OPEN_COUNTER, openCount)
+                .apply();
+    }
+
+    public void setDarkDialogsPref(boolean darkDialogs) {
+        context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(ENABLE_DARK_DIALOGS, darkDialogs)
                 .apply();
     }
 
     public boolean getDarkDialogsPref() {
-        return context.getSharedPreferences(DARK_DIALOGS_FILENAME, Context.MODE_PRIVATE)
+        return context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
                 .getBoolean(
-                        DARK_DIALOGS_TAG,
+                        ENABLE_DARK_DIALOGS,
                         (context.getResources().getConfiguration().uiMode
                                         & Configuration.UI_MODE_NIGHT_MASK)
                                 == Configuration.UI_MODE_NIGHT_YES);
     }
 
     public void setThemesPref(int theme) {
-        context.getSharedPreferences(SELECTED_THEME_FILENAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
                 .edit()
-                .putInt(USER_THEME_TAG, theme)
+                .putInt(APP_THEME, theme)
                 .apply();
     }
 
     public int getThemesPref() {
-        return context.getSharedPreferences(SELECTED_THEME_FILENAME, Context.MODE_PRIVATE)
-                .getInt(USER_THEME_TAG, BLUE_THEME);
-    }
-
-    public void setOpenCountPref(int openCount) {
-        context.getSharedPreferences(OPEN_COUNT_FILENAME, Context.MODE_PRIVATE)
-                .edit()
-                .putInt(OPEN_COUNT_TAG, openCount)
-                .apply();
-    }
-
-    public int getOpenCountPref() {
-        return context.getSharedPreferences(OPEN_COUNT_FILENAME, Context.MODE_PRIVATE)
-                .getInt(OPEN_COUNT_TAG, 0);
+        return context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
+                .getInt(APP_THEME, BLUE_THEME);
     }
 
     public void setStickyNotificationsPref(boolean stickyNotifications) {
-        context.getSharedPreferences(PERMANENT_NOTIFICATIONS_FILENAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
                 .edit()
-                .putBoolean(USER_PERMANENT_NOTIFICATIONS_TAG, stickyNotifications)
+                .putBoolean(ENABLE_PERMANENT_NOTIFICATIONS, stickyNotifications)
                 .apply();
     }
 
     public boolean getStickyNotificationsPref() {
-        return context.getSharedPreferences(PERMANENT_NOTIFICATIONS_FILENAME, Context.MODE_PRIVATE)
-                .getBoolean(USER_PERMANENT_NOTIFICATIONS_TAG, false);
+        return context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
+                .getBoolean(ENABLE_PERMANENT_NOTIFICATIONS, false);
     }
 
     public void set24HourTimeFormatPref(boolean is24HourFormat) {
-        context.getSharedPreferences(IS_24HR_BOOLEAN_FILENAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
                 .edit()
-                .putBoolean(USER_IS_24HR_TAG, is24HourFormat)
+                .putBoolean(ENABLE_24HR_TIME, is24HourFormat)
                 .apply();
     }
 
     public boolean get24HourFormatPref() {
-        return context.getSharedPreferences(IS_24HR_BOOLEAN_FILENAME, Context.MODE_PRIVATE)
-                .getBoolean(USER_IS_24HR_TAG, true);
+        return context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
+                .getBoolean(ENABLE_24HR_TIME, false);
     }
 
     public void setPillSoundPref(boolean soundOn) {
-        context.getSharedPreferences(SOUND_ON_FILENAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
                 .edit()
-                .putBoolean(SOUND_ON_TAG, soundOn)
+                .putBoolean(ENABLE_APP_SOUND, soundOn)
                 .apply();
     }
 
     public boolean getPillSoundPref() {
-        return context.getSharedPreferences(SOUND_ON_FILENAME, Context.MODE_PRIVATE)
-                .getBoolean(SOUND_ON_TAG, true);
+        return context.getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE)
+                .getBoolean(ENABLE_APP_SOUND, false);
     }
 }

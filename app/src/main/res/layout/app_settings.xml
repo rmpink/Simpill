@@ -202,7 +202,7 @@
         app:layout_constraintTop_toBottomOf="@+id/notifications_textview" />
 
     <TextView
-        android:id="@+id/database_textview"
+        android:id="@+id/tv_development_tools"
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginTop="32dp"
@@ -210,7 +210,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:text="@string/database"
+        android:text="Development Tools"
         android:textColor="@color/alice_blue"
         android:fontFamily="@font/inter_reg"
         android:textSize="16sp"
@@ -219,6 +219,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
     <Button
         android:id="@+id/delete_db_btn"
         android:layout_width="0dp"
@@ -233,14 +234,38 @@
         android:fontFamily="@font/inter_reg"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
-        android:text="@string/delete_all_pills"
+        android:text="Delete All Data"
         android:textAllCaps="false"
         android:textColor="@color/alice_blue"
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/database_textview" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_reset_app_open_count"
+        app:layout_constraintTop_toBottomOf="@+id/tv_development_tools" />
+
+    <Button
+        android:id="@+id/btn_reset_app_open_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/inter_reg"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:text="Reset App Open Count"
+        android:textAllCaps="false"
+        android:textColor="@color/alice_blue"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_db_btn" />
 
     <View
         android:backgroundTint="@color/alice_blue"

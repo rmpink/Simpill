@@ -21,7 +21,7 @@ public class Settings extends AppCompatActivity implements Dialogs.SettingsDialo
             permanentNotificationsSwitch,
             darkDialogsSwitch,
             appSoundsSwitch;
-    Button themesBtn, deleteAllBtn;
+    Button themesBtn, deleteAllBtn, resetAppOpenCountBtn;
 
     private final SharedPrefs sharedPrefs = new SharedPrefs(this);
 
@@ -57,6 +57,10 @@ public class Settings extends AppCompatActivity implements Dialogs.SettingsDialo
             Dialog dialog = getDialogs.getDatabaseDeletionDialog();
             dialog.show();
             settingsChanged = true;
+        });
+        resetAppOpenCountBtn.setOnClickListener(view -> {
+            SharedPrefs sharedPrefs = new SharedPrefs(this);
+            sharedPrefs.setOpenCountPref(0);
         });
         backButton.setOnClickListener(
                 v -> {
