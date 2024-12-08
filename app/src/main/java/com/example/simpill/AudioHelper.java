@@ -51,6 +51,7 @@ public class AudioHelper {
                             ALARM_REMINDER_SESSION_ID);
             alarmPlayer.setLooping(true);
         }
+        alarmPlayer.setVolume(0.0f, 0.0f);
         return alarmPlayer;
     }
 

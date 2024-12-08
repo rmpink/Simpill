@@ -86,7 +86,7 @@
     <!--1st parameter = name of the updated pill-->
     <string name="pill_db_deleted_toast">All pills deleted.</string>
     <string name="append_pill_deleted_toast">%1$s deleted.</string> <!--1st parameter = name of the deleted pill-->
-    <string name="pill_bottle_amount_toast">You have %1$d %2$s pills left.</string> <!--1st parameter = current pill amount     2nd parameter = pill name-->
+    <string name="pill_bottle_amount_toast">You have %1.1f %2$s pills left.</string> <!--1st parameter = current pill amount     2nd parameter = pill name-->
 
     <!--Stockup Notification Strings-->
     <!--1st parameter = name of pill-->

@@ -146,15 +146,15 @@ public class MainRecyclerViewAdapter
         interReg = ResourcesCompat.getFont(context, R.font.inter_reg);
         interMed = ResourcesCompat.getFont(context, R.font.inter_medium);
 
-        holder.pillNameTextView.setTypeface(interMed);
-        holder.pillTakeAmountView.setTypeface(interMed);
-        holder.pillTimeTextView.setTypeface(interMed);
-        holder.pillNameTextView.setTextSize(27.0f);
-        holder.pillTakeAmountView.setTextSize(15.0f);
-        holder.pillTimeTextView.setTextSize(15.0f);
+//        holder.pillNameTextView.setTypeface(interMed);
+//        holder.pillTakeAmountView.setTypeface(interMed);
+//        holder.pillTimeTextView.setTypeface(interMed);
+//        holder.pillNameTextView.setTextSize(27.0f);
+//        holder.pillTakeAmountView.setTextSize(15.0f);
+//        holder.pillTimeTextView.setTextSize(15.0f);
 
         holder.pillNameTextView.setText(pill.getName());
-        holder.pillTakeAmountView.setText("Take " + String.valueOf(pill.getTakeAmount()));
+        holder.pillTakeAmountView.setText("Take " + pill.getTakeAmount());
 
         if (pill.getTaken() == PILL_TAKEN_VALUE) {
             String takenTime = context.getString(R.string.taken_at, pill.getTimeTaken());

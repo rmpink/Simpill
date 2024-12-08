@@ -132,6 +132,7 @@ public class Settings extends AppCompatActivity implements Dialogs.SettingsDialo
         clockIs24HrSwitch = findViewById(R.id.clock_24hr_switch);
         darkDialogsSwitch = findViewById(R.id.dark_dialogs_switch);
         deleteAllBtn = findViewById(R.id.delete_db_btn);
+        resetAppOpenCountBtn = findViewById(R.id.btn_reset_app_open_count);
         permanentNotificationsSwitch = findViewById(R.id.sticky_notifications_switch);
         appSoundsSwitch = findViewById(R.id.soundSwitch);
 
