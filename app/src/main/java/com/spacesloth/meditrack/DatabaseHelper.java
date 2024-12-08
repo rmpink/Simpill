@@ -66,20 +66,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("Medications", null, null);
-        db.delete("Reminders", null, null);
         db.delete("Records", null, null);
+        db.delete("Reminders", null, null);
+        db.delete("Medications", null, null);
     }
 
     public void loadTestData() {
-        createMedication(new Medication("Bupropion", 300, "mg", 58, -1, -1, false, -1, 0, null, true, true));
-        createMedication(new Medication("Cambia", 50, "mg", 16, -1, -1, false, -1, 0, null, true, true));
-        createMedication(new Medication("Cyproterone", 50, "mg", 88, -1, -1, false, -1, 0, null, true, true));
-        createMedication(new Medication("Estrace", 2, "mg", 305, -1, -1, false, -1, 0, null, true, true));
-        createMedication(new Medication("Lorazepam", 0.5F, "mg", 41, -1, -1, false, -1, 0, null, true, true));
-        createMedication(new Medication("Sertraline", 300, "mg", 195, -1, -1, false, -1, 0, null, true, true));
-        createMedication(new Medication("Quetiapine", 25, "mg", 25, -1, -1, false, -1, 0, null, false, true));
-        createMedication(new Medication("Atenolol", 6.25F, "mg", 114, -1, -1, false, -1, 0, null, false, false));
+        int bup_id, cam_id, cyp_id, est_id, lor_id, ser_id, que_id, ate_id;
+        bup_id = createMedication(new Medication("Bupropion", 300, "mg", 58, -1, -1, false, -1, 0, null, true, true));
+        cam_id = createMedication(new Medication("Cambia", 50, "mg", 16, -1, -1, false, -1, 0, null, true, true));
+        cyp_id = createMedication(new Medication("Cyproterone", 50, "mg", 88, -1, -1, false, -1, 0, null, true, true));
+        est_id = createMedication(new Medication("Estrace", 2, "mg", 305, -1, -1, false, -1, 0, null, true, true));
+        lor_id = createMedication(new Medication("Lorazepam", 0.5F, "mg", 41, -1, -1, false, -1, 0, null, true, true));
+        ser_id = createMedication(new Medication("Sertraline", 300, "mg", 195, -1, -1, false, -1, 0, null, true, true));
+        que_id = createMedication(new Medication("Quetiapine", 25, "mg", 25, -1, -1, false, -1, 0, null, false, true));
+        ate_id = createMedication(new Medication("Atenolol", 6.25F, "mg", 114, -1, -1, false, -1, 0, null, false, false));
+
+        int bup_rem_id, cyp_rem_id, est_rem_id1, est_rem_id2, est_rem_id3, ser_rem_id, ate_rem_id;
+        bup_rem_id = createReminder(new Reminder(true, 1.0f, 570, 1000000, 2000000, (byte)127, -1, bup_id));
+        cyp_rem_id = createReminder(new Reminder(true, 3.0f, 570, 1000000, 2000000, (byte)34, -1, cyp_id));
+        est_rem_id1 = createReminder(new Reminder(true, 1.0f, 570, 1000000, 2000000, (byte)101, -1, est_id));
+        est_rem_id2 = createReminder(new Reminder(true, 1.0f, 960, 1000000, 2000000, (byte)127, -1, est_id));
+        est_rem_id3 = createReminder(new Reminder(true, 1.0f, 1350, 1000000, 2000000, (byte)17, -1, est_id));
+        ser_rem_id = createReminder(new Reminder(true, 1.0f, 570, 1000000, 2000000, (byte)127, 100, ser_id));
+        ate_rem_id = createReminder(new Reminder(false, 0.25f, 1080, 1000000, 2000000, (byte)23, 100, ate_id));
     }
 
     @Override
@@ -106,17 +116,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return medsList;
     }
 
-    public List<Reminder> getAllReminders(Boolean active) {
-        List<Reminder> remindersList = new ArrayList<Reminder>();
+    public List<Reminder> getAllReminders(Boolean active, String orderBy, String direction) {
+        List<Reminder> remindersList = new ArrayList<>();
         String query = "SELECT * FROM Reminders WHERE " +
-                "active=" + active.toString().toUpperCase() + ";";
+                "active=" + active.toString().toUpperCase();
+
+        if (orderBy != null) {
+            query += " ORDER BY " + orderBy + " " + direction;
+        }
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
-            remindersList.add(returnRemindersFromCursor(c));
+            remindersList.add(returnReminderFromCursor(c));
+            c.moveToNext();
         }
         c.close();
         return remindersList;
@@ -203,12 +218,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int createReminder(Reminder reminder) {
-        return 0;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try {
+            return (int) db.insert("Reminders", null, reminder.getContentValues());
+        } catch (Exception ignored) {
+            return -1;
+        }
     }
 
-    public void updateReminder(Reminder reminder) {}
+    public Reminder readReminder(int id) {
+        String query = "SELECT * FROM Reminders WHERE id=" + id + ";";
 
-    public void deleteReminder(Reminder reminder) {}
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+
+        Reminder reminder = returnReminderFromCursor(c);
+        c.close();
+
+        return reminder;
+    }
+
+    public void updateReminder(Reminder reminder) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.update("Reminders",
+                reminder.getContentValues(),
+                "id=?",
+                new String[] { String.valueOf(reminder.getId()) });
+    }
+
+    public void deleteReminder(Reminder reminder) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("Reminders", "id=?",
+                new String[] { String.valueOf(reminder.getId()) });
+    }
 
     private Medication returnMedicationFromCursor(Cursor c) {
         return new Medication(
@@ -227,7 +274,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    private Reminder returnRemindersFromCursor(Cursor c) {
+    private Reminder returnReminderFromCursor(Cursor c) {
         return new Reminder(
                 Boolean.getBoolean(c.getString(c.getColumnIndexOrThrow("active"))),
                 c.getFloat(c.getColumnIndexOrThrow("count")),

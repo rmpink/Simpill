@@ -177,7 +177,7 @@ public class RemindersActivity extends AppCompatActivity implements Reminder.Rem
     }
 
     private void loadRemindersFromDatabase() {
-        reminders = db.getAllReminders(true).toArray(new Reminder[0]);
+        reminders = db.getAllReminders(true, null, null).toArray(new Reminder[0]);
     }
 
     private void createRecyclerView() {

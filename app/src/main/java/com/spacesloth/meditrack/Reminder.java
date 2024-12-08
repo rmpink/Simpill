@@ -5,42 +5,48 @@ import android.content.ContentValues;
 import android.content.Context;
 
 public class Reminder {
-    private final ContentValues contentValues = new ContentValues(10);
+    private final ContentValues contentValues = new ContentValues(8);
 
     private int id;
     private boolean active = false;
-    private float count = 0.0f;
+    private float takeAmount = 0.0f;
     private long time = -1;
     private long startDate = -1;
     private long endDate = -1;
-    private byte daysOfWeek = 0;
+    private byte daysOfWeek = (byte) 0;
     private int interval = -1;
     private int medicationId = -1;
 
-    public Reminder(boolean _active, float _count, long _time, long _startDate,
+    public Reminder(boolean _active, float _takeAmount, long _time, long _startDate,
                     long _endDate, byte _daysOfWeek, int _interval, int _medicationId) {
 
         this.active = _active;
-        this.count = _count;
+        this.takeAmount = _takeAmount;
         this.time = _time;
         this.startDate = _startDate;
         this.endDate = _endDate;
         this.daysOfWeek = _daysOfWeek;
         this.interval = _interval;
         this.medicationId = _medicationId;
+
+        this.setContentValues();
     }
 
     public Reminder() {}
 
-    public static Reminder getById(int _id) {
-        return new Reminder();
+    public static Reminder getById(Context ctx, int _id) {
+        DatabaseHelper db = new DatabaseHelper(ctx);
+        Reminder reminder = db.readReminder(_id);
+        reminder.id = _id;
+        db.close();
+        return reminder;
     }
 
     public int getId() { return id; }
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }
-    public float getCount() { return count; }
-    public void setCount(float count) { this.count = count; }
+    public float getTakeAmount() { return takeAmount; }
+    public void setTakeAmount(float takeAmount) { this.takeAmount = takeAmount; }
     public long getTime() { return time; }
     public void setTime(long time) { this.time = time; }
     public long getStartDate() { return startDate; }
@@ -86,7 +92,7 @@ public class Reminder {
 
     public void setContentValues() {
         contentValues.put("active", active);
-        contentValues.put("count", count);
+        contentValues.put("count", takeAmount);
         contentValues.put("time", time);
         contentValues.put("start_date", startDate);
         contentValues.put("end_date", endDate);

@@ -30,6 +30,10 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/MeditrackAppTheme" />
         <activity
+            android:name=".RemindersEditActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/MeditrackAppTheme" />
+        <activity
             android:name=".Settings"
             android:parentActivityName=".MainActivity"
             android:theme="@style/MeditrackAppTheme" />

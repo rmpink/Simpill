@@ -22,11 +22,12 @@ import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class MainActivity extends AppCompatActivity implements Medication.MedicationListener {
+public class MainActivity extends AppCompatActivity
+        implements Reminder.ReminderListener {
 
     private final DatabaseHelper db = new DatabaseHelper(this);
     private final Toasts toasts = new Toasts(this);
-    public List<Medication> medications;
+    public List<Reminder> reminders;
 
     public static int backPresses = 0;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
         db.deleteDatabase();
         db.loadTestData();
 
-        loadMedicationsFromDatabase();
+        loadRemindersFromDatabase();
         setContentViewAndDesign();
         findViewsByIds();
         createRecyclerView();
@@ -67,14 +68,14 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        boolean newMedicationAdded = intent.hasExtra("new_med_id");
-        int newMedId = intent.getIntExtra("new_med_id", -1);
-        Medication newMed = Medication.getById(this, newMedId);
+        boolean newReminderAdded = intent.hasExtra("new_reminder_id");
+        int newReminderId = intent.getIntExtra("new_reminder_id", -1);
+        Reminder newReminder = Reminder.getById(this, newReminderId);
 
-        if(newMedicationAdded && newMedId != -1) {
-            medications.add(newMed);
-            recyclerViewAdapter.medications.add(newMed);
-            recyclerViewAdapter.notifyItemInserted(medications.size() - 1);
+        if(newReminderAdded && newReminderId != -1) {
+            reminders.add(newReminder);
+            recyclerViewAdapter.reminders.add(newReminder);
+            recyclerViewAdapter.notifyItemInserted(reminders.size() - 1);
         }
         onNotificationClicked(intent);
     }
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
                             @NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                         int position = viewHolder.getLayoutPosition();
 
-                        Medication medication = medications.get(viewHolder.getAbsoluteAdapterPosition());
+                        Reminder reminder = reminders.get(viewHolder.getAbsoluteAdapterPosition());
 
                         switch (direction) {
                             case ItemTouchHelper.RIGHT:
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
                                 break;
                             case ItemTouchHelper.LEFT:
                                 recyclerViewAdapter.notifyItemChanged(position);
-                                openEditMedication(medication);
+                                openEditReminder(reminder);
                                 break;
                         }
                     }
@@ -190,11 +191,11 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
     private void initiateButtons() {
         settingsButton.setOnClickListener(v -> openSettings());
         aboutButton.setOnClickListener(v -> openAbout());
-        fab.setOnClickListener(v -> openEditMedication(null));
+        fab.setOnClickListener(v -> openEditReminder(null));
     }
 
-    private void loadMedicationsFromDatabase() {
-        medications = db.getAllMedications(true, true);
+    private void loadRemindersFromDatabase() {
+        reminders = db.getAllReminders(true, "time", "ASC");
     }
 
     private void createRecyclerView() {
@@ -204,15 +205,15 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-        Medication medication = medications.get(item.getGroupId() - 1);
+        Reminder reminder = reminders.get(item.getGroupId() - 1);
 
         switch (item.getItemId()) {
             case 1:
-                openEditMedication(medication);
+                openEditReminder(reminder);
                 break;
             case 2:
 //                dialogs.getPillDeletionDialog(medication, item.getGroupId() - 1).show();
-                db.deleteMedication(medication);
+                db.deleteReminder(reminder);
                 break;
             default:
                 break;
@@ -241,11 +242,11 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
         }
     }
 
-    private void openEditMedication(Medication medication) {
-        Intent intent = new Intent(this, MedicationsEditActivity.class);
+    private void openEditReminder(Reminder reminder) {
+        Intent intent = new Intent(this, RemindersEditActivity.class);
 
-        if (medication != null) {
-            intent.putExtra("id", medication.getId());
+        if (reminder != null) {
+            intent.putExtra("id", reminder.getId());
         }
 
         startActivity(intent);
@@ -270,22 +271,22 @@ public class MainActivity extends AppCompatActivity implements Medication.Medica
     }
 
     @Override
-    public void notifyAddedMedication(Medication medication) {
-        this.medications.add(medication);
-        recyclerViewAdapter.medications.add(medication);
-        recyclerViewAdapter.notifyItemInserted(this.medications.size() - 1);
+    public void notifyAddedReminder(Reminder reminder) {
+        this.reminders.add(reminder);
+        recyclerViewAdapter.reminders.add(reminder);
+        recyclerViewAdapter.notifyItemInserted(this.reminders.size() - 1);
     }
 
     @Override
-    public void notifyDeletedMedication(Medication medication, int position) {
-        this.medications.remove(medication);
-        recyclerViewAdapter.medications.remove(medication);
+    public void notifyDeletedReminder(Reminder reminder, int position) {
+        this.reminders.remove(reminder);
+        recyclerViewAdapter.reminders.remove(reminder);
         recyclerViewAdapter.notifyItemRemoved(position);
-        recyclerViewAdapter.notifyItemRangeChanged(position, this.medications.size());
+        recyclerViewAdapter.notifyItemRangeChanged(position, this.reminders.size());
     }
 
     @Override
-    public void notifyResetMedication(int position) {
+    public void notifyResetReminder(int position) {
         recyclerViewAdapter.notifyItemChanged(position);
     }
 }

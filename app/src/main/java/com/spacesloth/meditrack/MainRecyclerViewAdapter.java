@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.Time;
 import java.util.List;
 
 public class MainRecyclerViewAdapter
@@ -32,12 +33,12 @@ public class MainRecyclerViewAdapter
     final MainActivity mainActivity;
     Activity parentActivity;
 
-    List<Medication> medications;
+    List<Reminder> reminders;
 
     MainRecyclerViewAdapter(MainActivity mainActivity, Activity parentActivity, Context context) {
         this.parentActivity = parentActivity;
         this.mainActivity = mainActivity;
-        this.medications = mainActivity.medications;
+        this.reminders = mainActivity.reminders;
         this.context = context;
     }
 
@@ -46,6 +47,7 @@ public class MainRecyclerViewAdapter
 
         final ConstraintLayout constraintLayout;
         final TextView pillTimeTextView;
+        final TextView pillTakeAmountTextView;
         final TextView pillNameTextView;
         final ImageButton takenBtn;
         final ImageButton resetBtn;
@@ -56,6 +58,7 @@ public class MainRecyclerViewAdapter
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.reminder_item);
             pillNameTextView = itemView.findViewById(R.id.tvMedicationName);
+            pillTakeAmountTextView = itemView.findViewById(R.id.tvReminderTakeAmount);
             pillTimeTextView = itemView.findViewById(R.id.tvReminderTime);
             takenBtn = itemView.findViewById(R.id.btn_take);
             resetBtn = itemView.findViewById(R.id.btn_reset);
@@ -70,18 +73,14 @@ public class MainRecyclerViewAdapter
                 ContextMenu menu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
             menu.add(this.getAbsoluteAdapterPosition() + 1, 1, 0, R.string.context_menu_update);
             menu.add(this.getAbsoluteAdapterPosition() + 1, 2, 0, R.string.context_menu_delete);
-            menu.add(
-                    this.getAbsoluteAdapterPosition() + 1,
-                    3,
-                    0,
-                    R.string.context_menu_change_color);
+            menu.add(this.getAbsoluteAdapterPosition() + 1, 3, 0, R.string.context_menu_change_color);
         }
     }
 
     @Override
     public int getItemCount() {
-        if (medications != null) {
-            return medications.size();
+        if (reminders != null) {
+            return reminders.size();
         } else {
             return 0;
         }
@@ -97,9 +96,9 @@ public class MainRecyclerViewAdapter
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Medication currentMedication = medications.get(position);
+        Reminder thisReminder = reminders.get(position);
         checkForNotificationOpenedOnAppStart(holder, position);
-        initAll(holder, currentMedication, position);
+        initAll(holder, thisReminder, position);
     }
 
     private void checkForNotificationOpenedOnAppStart(MyViewHolder holder, int position) {
@@ -114,11 +113,11 @@ public class MainRecyclerViewAdapter
 //        }
     }
 
-    private void initAll(MyViewHolder holder, Medication medication, int position) {
+    private void initAll(MyViewHolder holder, Reminder reminder, int position) {
 
         initClasses();
-        initTextViews(holder, medication);
-        initButtons(holder, medication, position);
+        initTextViews(holder, reminder);
+        initButtons(holder, reminder, position);
     }
 
     private void initClasses() {
@@ -130,21 +129,24 @@ public class MainRecyclerViewAdapter
         toasts = new Toasts(context);
     }
 
-    private void initTextViews(MyViewHolder holder, Medication medication) {
-        holder.pillNameTextView.setTextSize(27.0f);
-        holder.pillTimeTextView.setTextSize(15.0f);
+    private void initTextViews(MyViewHolder holder, Reminder reminder) {
+        Medication medication = Medication.getById(context, reminder.getMedicationId());
+        holder.pillNameTextView.setText(medication.getName() + " (" + medication.getStrength() + medication.getStrengthUnits() + ")");
+        holder.pillTakeAmountTextView.setText("Take " + reminder.getTakeAmount());
+        int hour = (int) (reminder.getTime() / 60);
+        int minute = (int) (reminder.getTime() % 60);
+        String takeAtString = String.format("Take at %02d:%02d", hour, minute);
+        holder.pillTimeTextView.setText(takeAtString);
 
-        holder.pillNameTextView.setText(medication.getName());
-
-//        if (medication.getTaken() == PILL_TAKEN_VALUE) {
-//            String takenTime = context.getString(R.string.taken_at, medication.getTimeTaken());
+//        if (holder.takenBtn.getVisibility() == View.VISIBLE) {
+//            String takenTime = String.format("Taken at %02d:%02d", hour, minute);
 //            holder.pillTimeTextView.setText(takenTime);
 //            holder.takenBtn.setVisibility(View.INVISIBLE);
 //            holder.takenBtn.setClickable(false);
 //            holder.resetBtn.setVisibility(View.VISIBLE);
 //            holder.resetBtn.setClickable(true);
 //        } else {
-//            holder.pillTimeTextView.setText(times);
+//            holder.pillTimeTextView.setText(String.format("Take at %02d:%02d", hour, minute));
 //            holder.resetBtn.setVisibility(View.INVISIBLE);
 //            holder.resetBtn.setClickable(false);
 //            holder.takenBtn.setVisibility(View.VISIBLE);
@@ -157,25 +159,28 @@ public class MainRecyclerViewAdapter
         }
     }
 
-    private void initButtons(MyViewHolder holder, Medication medication, int position) {
+    private void initButtons(MyViewHolder holder, Reminder reminder, int position) {
         holder.takenBtn.setOnClickListener(
                 v -> {
-//                    medication.takePill(context);
-//                    String time = medication.getTimeTaken();
-//                    String takenAtTime = context.getString(R.string.taken_at, time);
-//
-//                    holder.pillTimeTextView.setText(takenAtTime);
+//                    int hour = (int) (reminder.getTime() / 60);
+//                    int minute = (int) (reminder.getTime() % 60);
+//                    String takenTime = String.format("Taken at %02d:%02d", hour, minute);
+//                    holder.pillTimeTextView.setText(takenTime);
 //                    holder.takenBtn.setVisibility(View.INVISIBLE);
 //                    holder.takenBtn.setClickable(false);
 //                    holder.resetBtn.setVisibility(View.VISIBLE);
 //                    holder.resetBtn.setClickable(true);
-//                    if (sharedPrefs.getPillSoundPref()) audioHelper.getTakenPlayer().start();
+//
+                    Medication medication = Medication.getById(context, reminder.getMedicationId());
+                    medication.setCount(medication.getCount() - reminder.getTakeAmount());
+                    medication.updateDB(context);
                     toasts.showCustomToast(
                             context.getString(R.string.pill_taken_toast, medication.getName()));
                 });
 
         holder.bigButton.setOnClickListener(
                 view -> {
+                    Medication medication = Medication.getById(context, reminder.getMedicationId());
                     Intent intent = new Intent(context, MedicationsEditActivity.class);
                     intent.putExtra("med_taken_id", medication.getId());
                     context.startActivity(intent);

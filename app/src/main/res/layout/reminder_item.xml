@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0.25"
-        android:src="@drawable/svg_capsule"
+        android:src="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/img_capsule"
-        android:layout_width="70dp"
-        android:layout_height="80dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="12dp"
         android:layout_marginStart="16dp"
         android:contentDescription="Medication Look"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,15 +53,32 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:ellipsize="end"
-        android:paddingTop="12dp"
+        android:paddingTop="4dp"
         android:gravity="bottom"
         android:maxLines="1"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:verticalScrollbarPosition="right"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@id/mid_vertical_guideline"
         app:layout_constraintStart_toEndOf="@+id/img_capsule" />
+
+    <TextView
+        android:id="@+id/tvReminderTakeAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:alpha="0.75"
+        android:ellipsize="end"
+        android:gravity="top"
+        android:paddingVertical="4dp"
+        android:singleLine="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvReminderTime"
+        app:layout_constraintStart_toEndOf="@id/img_capsule"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <TextView
         android:id="@+id/tvReminderTime"
@@ -77,23 +94,24 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintStart_toEndOf="@id/img_capsule"
+        app:layout_constraintStart_toEndOf="@id/tvReminderTakeAmount"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <ImageButton
         android:id="@+id/btn_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="@android:color/transparent"
         android:clickable="false"
         android:contentDescription="Untake medication"
-        android:scaleX="1.1"
-        android:scaleY="1.2"
+        android:scaleX="2"
+        android:scaleY="2"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/svg_delete" />
 
     <ImageButton
         android:id="@+id/btn_take"
@@ -102,8 +120,8 @@
         android:background="@android:color/transparent"
         android:clickable="false"
         android:contentDescription="Take medication"
-        android:scaleX="1.1"
-        android:scaleY="1.2"
+        android:scaleX="2"
+        android:scaleY="2"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
@@ -152,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="108dp" />
+        app:layout_constraintGuide_begin="79dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"

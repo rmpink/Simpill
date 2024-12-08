@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 public class Medication {
-    private final ContentValues contentValues = new ContentValues(13);
+    private final ContentValues contentValues = new ContentValues(12);
 
     private int id;
     private String name = "";

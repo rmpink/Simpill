@@ -38,7 +38,7 @@ public class MedicationsEditActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.MeditrackAppTheme_BlackBackground);
-        setContentView(R.layout.app_new_medication);
+        setContentView(R.layout.app_edit_medication);
 
         findViewsByIds();
         initiateButtons();
