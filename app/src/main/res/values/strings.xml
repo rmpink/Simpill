@@ -55,7 +55,7 @@
     <string name="delete_all_pills">Delete All Pills</string>
 
 
-    <string name="theme_applied">%1$s theme applied :)</string><!--1st parameter is the theme color e.g. blue-->
+    <string name="theme_applied">%1$s theme applied</string><!--1st parameter is the theme color e.g. blue-->
     <string name="select_theme_dialog_title">Select</string>
     <string name="change_theme">Change Theme</string>
 
@@ -75,7 +75,7 @@
 
     <!--Toast Strings-->
     <!--1st parameter = name of created pill-->
-    <string name="device_restart_toast">Resetting alarms for Simpill :)</string>
+    <string name="device_restart_toast">Resetting alarms for Simpill</string>
     <string name="time_format_24hr_toast">Time format set to 24hr.</string>
     <string name="time_format_12hr_toast">Time format set to 12hr.</string>
     <string name="pill_taken_toast">%1$s taken.</string> <!--1st parameter = name of pill-->
@@ -92,7 +92,7 @@
     <!--1st parameter = name of pill-->
 
     <!--Reminder Notification Strings-->
-    <string name="reminder_notification_description">It\'s time to take your medication: %1$s :)</string> <!--1st parameter = name of pill-->
+    <string name="reminder_notification_description">It\'s time to take your medication: %1$s</string> <!--1st parameter = name of pill-->
 
     <!--Welcome Dialog Strings-->
     <string name="welcome_dialog_title">Welcome</string>
@@ -101,7 +101,7 @@
     <!--Pill Name Dialog Strings-->
     <string name="pill_name_dialog_title">Pill Name</string>
     <string name="pill_name_dialog_msg">Please enter a name for your medication by clicking the line below:\n</string>
-    <string name="pill_name_dialog_text_hint">Name - keep it short :)</string>
+    <string name="pill_name_dialog_text_hint">Name - keep it short</string>
 
     <!--Pill Amount Dialog Strings-->
     <string name="done">Done</string>
@@ -147,8 +147,8 @@
     <string name="choose_times_per_day_dialog_message">How many times a day do you take this medication?</string>
 
 
-    <string name="btc_address_copied">BTC address copied :)</string>
-    <string name="xmr_address_copied">XMR address copied :)</string>
+    <string name="btc_address_copied">BTC address copied</string>
+    <string name="xmr_address_copied">XMR address copied</string>
 
     <string name="custom_interval_dialog_message">Set a custom interval (in days) for your medication reminder using the buttons below:</string>
     <string name="custom_interval_dialog_title">Interval</string>
@@ -160,8 +160,8 @@
     <string name="context_menu_update">Update</string>
     <string name="context_menu_delete">Delete</string>
     <string name="context_menu_change_color">Change Color</string>
-    <string name="donation_dialog_message">If you enjoy using Simpill, please consider making a donation :)\n\nSimpill is completely free and open-source without any ads or trackers.\n\nYou can donate using one of the buttons below:</string>
-    <string name="reminder_already_taken_description">You have already taken your %1$s :)</string> <!--1st parameter = name of pill-->
+    <string name="donation_dialog_message">If you enjoy using Simpill, please consider making a donation\n\nSimpill is completely free and open-source without any ads or trackers.\n\nYou can donate using one of the buttons below:</string>
+    <string name="reminder_already_taken_description">You have already taken your %1$s</string> <!--1st parameter = name of pill-->
 
     <string name="paypal_donation_link" translatable="false">https://www.paypal.com/donate/?hosted_button_id=A8UNN2A4D3P3G</string>
 
@@ -172,8 +172,8 @@
     <string name="purple">Purple</string>
 
     <string name="dark_dialogs_setting">Dark Dialogs</string>
-    <string name="dark_dialogs_toast">Dark dialogs applied :)</string>
-    <string name="light_dialogs_toast">Light dialogs applied :)</string>
+    <string name="dark_dialogs_toast">Dark dialogs applied</string>
+    <string name="light_dialogs_toast">Light dialogs applied</string>
 
     <string name="dev_email">Developer email</string>
     <string name="simpill_code">Simpill\'s code</string>

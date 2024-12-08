@@ -54,7 +54,7 @@
     <string name="_24_hour_format">Format de 24 Heures</string>
     <string name="database">Base de données</string>
     <string name="delete_all_pills">Supprimer tous vos pilules</string>
-    <string name="theme_applied">Thème %1$s a été appliqué :)</string>
+    <string name="theme_applied">Thème %1$s a été appliqué</string>
     <string name="select_theme_dialog_title">Choisissez</string>
     <string name="change_theme">Choisissez une Thème</string>
 
@@ -82,7 +82,7 @@
     <!--Stockup Notification Strings-->
 
     <!--Reminder Notification Strings-->
-    <string name="reminder_notification_description">Il est temps de prendre votre médicament: %1$s :)</string>
+    <string name="reminder_notification_description">Il est temps de prendre votre médicament: %1$s</string>
 
     <!--Welcome Dialog Strings-->
     <string name="welcome_dialog_message">Pour créer votre première médicament, cliquez sur le button plus en bas de votre écran.</string>
@@ -90,7 +90,7 @@
     <!--Pill Name Dialog Strings-->
     <string name="pill_name_dialog_title">Nom</string>
     <string name="pill_name_dialog_msg">Veuillez entrer un nom pour votre médicament par cliquez sur la ligne ci-dessous.\n</string>
-    <string name="pill_name_dialog_text_hint">Nom - faites court :)</string>
+    <string name="pill_name_dialog_text_hint">Nom - faites court</string>
 
     <!--Pill Amount Dialog Strings-->
     <string name="done">Terminé</string>
@@ -126,8 +126,8 @@
     <string name="take_pill_content_description">Le bouton de prendre votre médicament</string>
     <string name="choose_times_per_day_dialog_message">Combien de fois vous prenez ce médicament chaque jour?</string>
 
-    <string name="btc_address_copied">BTC address a été copiée :)</string>
-    <string name="xmr_address_copied">XMR address a été copiée :)</string>
+    <string name="btc_address_copied">BTC address a été copiée</string>
+    <string name="xmr_address_copied">XMR address a été copiée</string>
 
     <string name="custom_interval_dialog_message">Choisissez plutôt un intervalle personnalisé pour votre rappel de médicament en utilisant les boutons ci-dessous.</string>
     <string name="custom_interval_dialog_title">Intervalle</string>
@@ -136,8 +136,8 @@
     <string name="context_menu_delete">Supprimer</string>
     <string name="context_menu_change_color">Changer la couleur</string>
 
-    <string name="donation_dialog_message">Si vous aimez utiliser Simpill, s\'il vous plaît envisager de faire un don :)\n\nSimpill est complètement libre et open source. Elle ne contient pas de traqeurs, d\'annonces gênantes, ou d\'app autorisations pas nécessaire. \n\nVous pouvez faire un don en utilisant les boutons ci-dessous.</string>
-    <string name="reminder_already_taken_description">Vous avez déjà pris votre médicament: %1$s :)</string> <!--1st parameter = name of pill-->
+    <string name="donation_dialog_message">Si vous aimez utiliser Simpill, s\'il vous plaît envisager de faire un don\n\nSimpill est complètement libre et open source. Elle ne contient pas de traqeurs, d\'annonces gênantes, ou d\'app autorisations pas nécessaire. \n\nVous pouvez faire un don en utilisant les boutons ci-dessous.</string>
+    <string name="reminder_already_taken_description">Vous avez déjà pris votre médicament: %1$s</string> <!--1st parameter = name of pill-->
 
     <!--Use masculine for translations-->
     <string name="blue">Bleu</string>
@@ -146,8 +146,8 @@
     <string name="purple">Violet</string>
 
     <string name="dark_dialogs_setting">Boîtes de Dialogue Sombre</string>
-    <string name="dark_dialogs_toast">Les boîtes de dialogue sombre ont été appliquée :)</string>
-    <string name="light_dialogs_toast">Les boîtes de dialogue clair ont été appliquée :)</string>
+    <string name="dark_dialogs_toast">Les boîtes de dialogue sombre ont été appliquée</string>
+    <string name="light_dialogs_toast">Les boîtes de dialogue clair ont été appliquée</string>
 
     <string name="dev_email">Mon email</string>
     <string name="simpill_code">Code source</string>

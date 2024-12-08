@@ -7,7 +7,7 @@ import static com.example.simpill.DatabaseHelper.COLUMN_ALARM_TYPE;
 import static com.example.simpill.DatabaseHelper.COLUMN_BOTTLECOLOR;
 import static com.example.simpill.DatabaseHelper.COLUMN_CUSTOM_ALARM_URI;
 import static com.example.simpill.DatabaseHelper.COLUMN_FREQUENCY;
-import static com.example.simpill.DatabaseHelper.COLUMN_AMOUNT;
+import static com.example.simpill.DatabaseHelper.COLUMN_TAKE_AMOUNT;
 import static com.example.simpill.DatabaseHelper.COLUMN_ISTAKEN;
 import static com.example.simpill.DatabaseHelper.COLUMN_START_DATE;
 import static com.example.simpill.DatabaseHelper.COLUMN_STOCKUP;
@@ -666,7 +666,7 @@ public class Pill {
 
     public void setTakeAmount(float takeAmount) {
         this.takeAmount = takeAmount;
-        contentValues.put(COLUMN_AMOUNT, takeAmount);
+        contentValues.put(COLUMN_TAKE_AMOUNT, takeAmount);
     }
 
     public int getTaken() {
@@ -780,6 +780,7 @@ public class Pill {
         contentValues.put(COLUMN_TIME, getTimes24HrFormat());
         contentValues.put(COLUMN_START_DATE, getStartDate());
         contentValues.put(COLUMN_STOCKUP, getStockupDate());
+        contentValues.put(COLUMN_TAKE_AMOUNT, getTakeAmount());
         contentValues.put(COLUMN_CUSTOM_ALARM_URI, getCustomAlarmUri().toString());
         contentValues.put(COLUMN_FREQUENCY, getFrequency());
         contentValues.put(COLUMN_ISTAKEN, getTaken());

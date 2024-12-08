@@ -111,7 +111,7 @@ public class CreatePill extends AppCompatActivity
         if (intent.hasExtra(PRIMARY_KEY_INTENT_KEY_STRING)) {
             userPill = myDatabase.getPill(intent.getIntExtra(PRIMARY_KEY_INTENT_KEY_STRING, -1));
             pillNameTextView.setText(userPill.getName());
-            pillTakeAmountTextView.setText(String.valueOf(userPill.getTakeAmount()));
+            pillTakeAmountTextView.setText("Take " + userPill.getTakeAmount());
             pillTimesTextView.setText(
                     is24HrFormat ? userPill.getTimes24HrFormat() : userPill.getTimes12HrFormat());
 
