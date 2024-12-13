@@ -4,9 +4,7 @@ package com.spacesloth.meditrack;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -69,9 +67,7 @@ public class MedicationsEditActivity extends AppCompatActivity
             spnStrengthUnits.setSelection(unitsAdapter.getPosition(med.getStrengthUnits()));
 
             ImageViewSpinnerAdapter medLookAdapter = (ImageViewSpinnerAdapter) spnMedicationLook.getAdapter();
-            if (!med.getColour().isEmpty()) {
-                medLookAdapter.setColour(Color.parseColor(med.getColour()));
-            }
+            medLookAdapter.setColour(med.getColour());
             spnMedicationLook.setSelection(medLookAdapter.getPosition(med.getIcon()));
             currentLook = med.getIcon();
             etCount.setText(String.valueOf(med.getCount()));
@@ -158,7 +154,6 @@ public class MedicationsEditActivity extends AppCompatActivity
         String newMedStrengthUnits = spnStrengthUnits.getSelectedItem().toString();
         float newMedCount = Float.parseFloat(etCount.getText().toString());
         ImageViewSpinnerAdapter adapter = (ImageViewSpinnerAdapter) MedicationsEditActivity.this.spnMedicationLook.getAdapter();
-        String newMedColour = String.format("#%06X", (0xFFFFFF & adapter.getColour()));
 
         Medication newMed = new Medication(
                 newMedName,
@@ -166,7 +161,7 @@ public class MedicationsEditActivity extends AppCompatActivity
                 newMedStrengthUnits,
                 newMedCount,
                 currentLook,
-                newMedColour,
+                adapter.getColour(),
                 false,
                 0.0f,
                 -1,
@@ -186,7 +181,6 @@ public class MedicationsEditActivity extends AppCompatActivity
         String updatedMedStrengthUnits = spnStrengthUnits.getSelectedItem().toString();
         float updatedMedCount = Float.parseFloat(etCount.getText().toString());
         ImageViewSpinnerAdapter adapter = (ImageViewSpinnerAdapter) MedicationsEditActivity.this.spnMedicationLook.getAdapter();
-        String updatedMedColour = String.format("#%06X", (0xFFFFFF & adapter.getColour()));
 
         Medication newMed = new Medication(
                 updatedMedName,
@@ -194,7 +188,7 @@ public class MedicationsEditActivity extends AppCompatActivity
                 updatedMedStrengthUnits,
                 updatedMedCount,
                 currentLook,
-                updatedMedColour,
+                adapter.getColour(),
                 false,
                 0.0f,
                 -1,

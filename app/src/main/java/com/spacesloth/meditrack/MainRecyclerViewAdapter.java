@@ -145,13 +145,11 @@ public class MainRecyclerViewAdapter
         Resources res = context.getResources();
         int lookId = res.getIdentifier(medication.getIcon(), "drawable", context.getPackageName());
         holder.medLookImage.setImageResource(lookId);
-        if (!medication.getColour().isEmpty()) {
-            int c = Color.parseColor(medication.getColour());
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                holder.medLookImage.setColorFilter(new BlendModeColorFilter(c, BlendMode.MODULATE));
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                holder.medLookImage.setColorFilter(c, PorterDuff.Mode.MULTIPLY);
-            }
+        int c = medication.getColour();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            holder.medLookImage.setColorFilter(new BlendModeColorFilter(c, BlendMode.MODULATE));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            holder.medLookImage.setColorFilter(c, PorterDuff.Mode.MULTIPLY);
         }
 
         // TODO: STILL NEEDS TO CHECK TO SEE IF SHIT HAS ALREADY BEEN TAKEN AND ADJUST ACCORDINGLY
