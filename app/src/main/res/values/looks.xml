@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="looks_array">
+        <item>look_bullet</item>
+        <item>look_butterfly</item>
+        <item>look_butterflyline</item>
+        <item>look_capsule</item>
+        <item>look_capsulemono</item>
+        <item>look_capsuleduo</item>
+        <item>look_circle</item>
+        <item>look_circleline</item>
+        <item>look_diamond</item>
+        <item>look_donut</item>
+        <item>look_egg</item>
+        <item>look_eight</item>
+        <item>look_eightline</item>
+        <item>look_gelcap</item>
+        <item>look_halfmoon</item>
+        <item>look_octagon</item>
+        <item>look_pentagon</item>
+        <item>look_pentagonline</item>
+        <item>look_rect</item>
+        <item>look_roundedrect</item>
+        <item>look_shield</item>
+        <item>look_shieldline</item>
+        <item>look_square</item>
+        <item>look_squarelines</item>
+        <item>look_tablet</item>
+        <item>look_tabletline</item>
+        <item>look_tag</item>
+        <item>look_trapline</item>
+        <item>look_traptriple</item>
+        <item>look_triangle</item>
+        <item>look_triangleround</item>
+        <item>look_visor</item>
+        <item>look_visorline</item>
+    </string-array>
+</resources>

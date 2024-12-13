@@ -4,6 +4,7 @@ package com.spacesloth.meditrack;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,20 +20,22 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 public class MedicationsEditActivity extends AppCompatActivity
-    implements AdapterView.OnItemSelectedListener, View.OnFocusChangeListener {
+    implements AdapterView.OnItemSelectedListener,
+        View.OnFocusChangeListener {
 
     Button btnBack, btnAddMedication;
-    ImageView imgPill, imgMedLook, imgBlisterPack, imgPillBottle, imgCalendar;
-    TextView tvMedicationName, tvMedicationLook, tvMedicationLookDetails, tvStrength, tvCount,
+    TextView tvMedicationName, tvMedicationLookDetails, tvStrength, tvCount,
             tvRefill, tvRefillDetails;
     EditText etMedication, etStrength, etCount;
-    Spinner spnUnits;
+    ImageView imMedLook;
+    Spinner spnMedicationLook, spnStrengthUnits;
 
     Medication med = new Medication();
-
-//    final DatabaseHelper db = new DatabaseHelper(this);
+    String currentLook = "look_circleline";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +45,17 @@ public class MedicationsEditActivity extends AppCompatActivity
 
         findViewsByIds();
         initiateButtons();
-        initiateUnitsSpinner();
+        initiateSpinners();
         getAndSetIntentData();
         setAddButtonEnabledState();
     }
 
-    private void initiateUnitsSpinner() {
-        spnUnits.setOnItemSelectedListener(this);
+    private void initiateSpinners() {
+        spnStrengthUnits.setOnItemSelectedListener(this);
+        spnMedicationLook.setOnItemSelectedListener(this);
+        List<String> medLooks = Arrays.asList(getResources().getStringArray(R.array.looks_array));
+        ImageViewSpinnerAdapter medLookAdapter = new ImageViewSpinnerAdapter(this, medLooks, 0);
+        spnMedicationLook.setAdapter(medLookAdapter);
     }
 
     private void getAndSetIntentData() {
@@ -57,8 +64,16 @@ public class MedicationsEditActivity extends AppCompatActivity
             med = Medication.getById(this, intent.getIntExtra("med_taken_id", -1));
             etMedication.setText(med.getName());
             etStrength.setText(String.valueOf(med.getStrength()));
-            ArrayAdapter<String> spinnerAdapter = (ArrayAdapter<String>) spnUnits.getAdapter();
-            spnUnits.setSelection(spinnerAdapter.getPosition(med.getStrengthUnits()));
+
+            ArrayAdapter<String> unitsAdapter = (ArrayAdapter<String>) spnStrengthUnits.getAdapter();
+            spnStrengthUnits.setSelection(unitsAdapter.getPosition(med.getStrengthUnits()));
+
+            ImageViewSpinnerAdapter medLookAdapter = (ImageViewSpinnerAdapter) spnMedicationLook.getAdapter();
+            if (!med.getColour().isEmpty()) {
+                medLookAdapter.setColour(Color.parseColor(med.getColour()));
+            }
+            spnMedicationLook.setSelection(medLookAdapter.getPosition(med.getIcon()));
+            currentLook = med.getIcon();
             etCount.setText(String.valueOf(med.getCount()));
 
             if (med.isRefillReminder()) {
@@ -81,34 +96,25 @@ public class MedicationsEditActivity extends AppCompatActivity
     private void findViewsByIds() {
         btnBack = findViewById(R.id.btn_back);
 
-        imgPill = findViewById(R.id.img_capsule);
         tvMedicationName = findViewById(R.id.tv_medication_name);
         etMedication = findViewById(R.id.et_medication);
-        imgPill.setOnClickListener(v -> focusOn(etMedication));
         tvMedicationName.setOnClickListener(v -> focusOn(etMedication));
         etMedication.setOnFocusChangeListener(this);
+        tvMedicationLookDetails = findViewById(R.id.tv_look_details);
+        spnMedicationLook = findViewById(R.id.spn_med_look);
+        imMedLook = findViewById(R.id.im_med_look);
 
-//        imgMedLook = findViewById(R.id.img_med_look);
-//        tvMedicationLook = findViewById(R.id.tv_medication_look);
-//        tvMedicationLookDetails = findViewById(R.id.tv_look_details);
-        // TODO
-
-        imgBlisterPack = findViewById(R.id.img_blister_pack);
         tvStrength = findViewById(R.id.tv_strength);
         etStrength = findViewById(R.id.et_strength);
-        imgBlisterPack.setOnClickListener(v -> focusOn(etStrength));
         tvStrength.setOnClickListener(v -> focusOn(etStrength));
-        spnUnits = findViewById(R.id.spn_units);
+        spnStrengthUnits = findViewById(R.id.spn_units);
         etStrength.setOnFocusChangeListener(this);
 
-        imgPillBottle = findViewById(R.id.img_pill_bottle);
         tvCount = findViewById(R.id.tv_count);
         etCount = findViewById(R.id.et_count);
-        imgPillBottle.setOnClickListener(v -> focusOn(etCount));
         tvCount.setOnClickListener(v -> focusOn(etCount));
         etCount.setOnFocusChangeListener(this);
 
-        imgCalendar = findViewById(R.id.img_calendar);
         tvRefill = findViewById(R.id.tv_refill);
         tvRefillDetails = findViewById(R.id.tv_refill_details);
 
@@ -123,23 +129,44 @@ public class MedicationsEditActivity extends AppCompatActivity
 
     private void initiateButtons() {
         btnAddMedication.setOnClickListener(v -> createMedication());
+        imMedLook.setOnClickListener(v -> openColourPickerDialog());
         btnBack.setOnClickListener(v -> finish());
     }
 
+    private void openColourPickerDialog() {
+        ImageViewSpinnerAdapter adapter = (ImageViewSpinnerAdapter) MedicationsEditActivity.this.spnMedicationLook.getAdapter();
+        int colour = adapter.getColour();
+        ColourPickerDialog dialog = new ColourPickerDialog(this, colour, currentLook, new ColourPickerDialog.OnColourPickerSquareListener() {
+            @Override
+            public void onCancel(ColourPickerDialog dialog) {
+                // nuffin
+            }
+
+            @Override
+            public void onOk(ColourPickerDialog dialog, int colour) {
+                ImageViewSpinnerAdapter adapter = (ImageViewSpinnerAdapter) MedicationsEditActivity.this.spnMedicationLook.getAdapter();
+                adapter.setColour(colour);
+                adapter.notifyDataSetChanged();
+            }
+        });
+        dialog.show();
+    }
+
     private void createMedication() {
-        Log.i("asdf", "ENTERING CREATE MEDICATION");
         String newMedName = etMedication.getText().toString().trim();
         float newMedStrength = Float.parseFloat(etStrength.getText().toString());
-        String newMedStrengthUnits = spnUnits.getSelectedItem().toString();
+        String newMedStrengthUnits = spnStrengthUnits.getSelectedItem().toString();
         float newMedCount = Float.parseFloat(etCount.getText().toString());
+        ImageViewSpinnerAdapter adapter = (ImageViewSpinnerAdapter) MedicationsEditActivity.this.spnMedicationLook.getAdapter();
+        String newMedColour = String.format("#%06X", (0xFFFFFF & adapter.getColour()));
 
         Medication newMed = new Medication(
                 newMedName,
                 newMedStrength,
                 newMedStrengthUnits,
                 newMedCount,
-                -1,
-                -1,
+                currentLook,
+                newMedColour,
                 false,
                 0.0f,
                 -1,
@@ -149,26 +176,25 @@ public class MedicationsEditActivity extends AppCompatActivity
         );
 
         if (newMed.createDB(this)) {
-            Log.i("asdf", "New Med ID is " + newMed.getId());
             finish();
-        } else {
-            Log.e("asdf", "Error, something went wrong.");
         }
     }
 
     private void updateMedication() {
         String updatedMedName = etMedication.getText().toString().trim();
         float updatedMedStrength = Float.parseFloat(etStrength.getText().toString());
-        String updatedMedStrengthUnits = spnUnits.getSelectedItem().toString();
+        String updatedMedStrengthUnits = spnStrengthUnits.getSelectedItem().toString();
         float updatedMedCount = Float.parseFloat(etCount.getText().toString());
+        ImageViewSpinnerAdapter adapter = (ImageViewSpinnerAdapter) MedicationsEditActivity.this.spnMedicationLook.getAdapter();
+        String updatedMedColour = String.format("#%06X", (0xFFFFFF & adapter.getColour()));
 
         Medication newMed = new Medication(
                 updatedMedName,
                 updatedMedStrength,
                 updatedMedStrengthUnits,
                 updatedMedCount,
-                -1,
-                -1,
+                currentLook,
+                updatedMedColour,
                 false,
                 0.0f,
                 -1,
@@ -190,7 +216,11 @@ public class MedicationsEditActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {}
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId() == R.id.spn_med_look) {
+            currentLook = (String) parent.getItemAtPosition(position);
+        }
+    }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {}
@@ -200,7 +230,7 @@ public class MedicationsEditActivity extends AppCompatActivity
         setAddButtonEnabledState();
     }
 
-    public interface MedicationCreationListener {
-        void notifyAddedMedication(Medication medication);
+    public interface MedicationUpdateListener {
+        void notifyMedicationChange();
     }
 }

@@ -4,6 +4,12 @@ package com.spacesloth.meditrack;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -17,8 +23,9 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Time;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainRecyclerViewAdapter
         extends RecyclerView.Adapter<MainRecyclerViewAdapter.MyViewHolder> {
@@ -46,34 +53,35 @@ public class MainRecyclerViewAdapter
             implements View.OnCreateContextMenuListener {
 
         final ConstraintLayout constraintLayout;
-        final TextView pillTimeTextView;
-        final TextView pillTakeAmountTextView;
-        final TextView pillNameTextView;
-        final ImageButton takenBtn;
-        final ImageButton resetBtn;
+        final TextView tvTimeHeader, tvTakeAll, tvUntakeAll, pillTakeAmountTextView, pillNameTextView;
+        final ImageButton takeBtn, resetBtn;
         final Button bigButton;
-        final ImageView pillBottleImage;
+        final ImageView imgBackground, medLookImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.reminder_item);
+            tvTimeHeader = itemView.findViewById(R.id.tvTimeHeader);
+            tvTakeAll = itemView.findViewById(R.id.tv_take_all);
+            tvUntakeAll = itemView.findViewById(R.id.tv_untake_all);
             pillNameTextView = itemView.findViewById(R.id.tvMedicationName);
             pillTakeAmountTextView = itemView.findViewById(R.id.tvReminderTakeAmount);
-            pillTimeTextView = itemView.findViewById(R.id.tvReminderTime);
-            takenBtn = itemView.findViewById(R.id.btn_take);
+            takeBtn = itemView.findViewById(R.id.btn_take);
             resetBtn = itemView.findViewById(R.id.btn_reset);
-            pillBottleImage = itemView.findViewById(R.id.img_capsule);
+            medLookImage = itemView.findViewById(R.id.img_capsule);
             bigButton = itemView.findViewById(R.id.bigButton);
-            pillBottleImage.setOnCreateContextMenuListener(this);
+            imgBackground = itemView.findViewById(R.id.background);
+            medLookImage.setOnCreateContextMenuListener(this);
             bigButton.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onCreateContextMenu(
                 ContextMenu menu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            menu.add(this.getAbsoluteAdapterPosition() + 1, 1, 0, R.string.context_menu_update);
-            menu.add(this.getAbsoluteAdapterPosition() + 1, 2, 0, R.string.context_menu_delete);
-            menu.add(this.getAbsoluteAdapterPosition() + 1, 3, 0, R.string.context_menu_change_color);
+            int pos = this.getAbsoluteAdapterPosition();
+            menu.add(pos, 1, 0, R.string.context_menu_update);
+            menu.add(pos, 2, 0, R.string.context_menu_delete);
+            menu.add(pos, 3, 0, R.string.context_menu_change_color);
         }
     }
 
@@ -102,7 +110,7 @@ public class MainRecyclerViewAdapter
     }
 
     private void checkForNotificationOpenedOnAppStart(MyViewHolder holder, int position) {
-        Intent mainActivityIntent = mainActivity.getIntent();
+//        Intent mainActivityIntent = mainActivity.getIntent();
 //        if (mainActivityIntent.hasExtra("pill_taken_notification_id")) {
 //            int id = mainActivityIntent.getIntExtra("pill_taken_notification_id", -1);
 //            ArrayHelper arrayHelper = new ArrayHelper();
@@ -114,9 +122,8 @@ public class MainRecyclerViewAdapter
     }
 
     private void initAll(MyViewHolder holder, Reminder reminder, int position) {
-
         initClasses();
-        initTextViews(holder, reminder);
+        initTextViews(holder, reminder, position);
         initButtons(holder, reminder, position);
     }
 
@@ -129,14 +136,37 @@ public class MainRecyclerViewAdapter
         toasts = new Toasts(context);
     }
 
-    private void initTextViews(MyViewHolder holder, Reminder reminder) {
+    private void initTextViews(MyViewHolder holder, Reminder reminder, int position) {
         Medication medication = Medication.getById(context, reminder.getMedicationId());
         holder.pillNameTextView.setText(medication.getName() + " (" + medication.getStrength() + medication.getStrengthUnits() + ")");
         holder.pillTakeAmountTextView.setText("Take " + reminder.getTakeAmount());
-        int hour = (int) (reminder.getTime() / 60);
-        int minute = (int) (reminder.getTime() % 60);
-        String takeAtString = String.format("Take at %02d:%02d", hour, minute);
-        holder.pillTimeTextView.setText(takeAtString);
+
+        // CHANGE Medication Icon back to an INT, i.e. Medication.getIconId()
+        Resources res = context.getResources();
+        int lookId = res.getIdentifier(medication.getIcon(), "drawable", context.getPackageName());
+        holder.medLookImage.setImageResource(lookId);
+        if (!medication.getColour().isEmpty()) {
+            int c = Color.parseColor(medication.getColour());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                holder.medLookImage.setColorFilter(new BlendModeColorFilter(c, BlendMode.MODULATE));
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                holder.medLookImage.setColorFilter(c, PorterDuff.Mode.MULTIPLY);
+            }
+        }
+
+        // TODO: STILL NEEDS TO CHECK TO SEE IF SHIT HAS ALREADY BEEN TAKEN AND ADJUST ACCORDINGLY
+
+        // SHOW/HIDE TIME TO TAKE MEDICATION DEPENDING ON IF THE PREVIOUS ONE IS THE SAME
+        // TODO: This is still buggy as well
+        if (position > 0 && reminder.getTime() == reminders.get(position-1).getTime()) {
+            holder.tvTimeHeader.setVisibility(View.GONE);
+            holder.tvTakeAll.setVisibility(View.GONE);
+            holder.tvUntakeAll.setVisibility(View.GONE);
+        } else {
+            int hour = (int) (reminder.getTime() / 60);
+            int minute = (int) (reminder.getTime() % 60);
+            holder.tvTimeHeader.setText(String.format("%02d:%02d", hour, minute));
+        }
 
 //        if (holder.takenBtn.getVisibility() == View.VISIBLE) {
 //            String takenTime = String.format("Taken at %02d:%02d", hour, minute);
@@ -155,27 +185,64 @@ public class MainRecyclerViewAdapter
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             holder.pillNameTextView.setContextClickable(true);
-            holder.pillTimeTextView.setContextClickable(true);
         }
     }
 
     private void initButtons(MyViewHolder holder, Reminder reminder, int position) {
-        holder.takenBtn.setOnClickListener(
+        holder.takeBtn.setOnClickListener(
                 v -> {
-//                    int hour = (int) (reminder.getTime() / 60);
-//                    int minute = (int) (reminder.getTime() % 60);
-//                    String takenTime = String.format("Taken at %02d:%02d", hour, minute);
-//                    holder.pillTimeTextView.setText(takenTime);
-//                    holder.takenBtn.setVisibility(View.INVISIBLE);
-//                    holder.takenBtn.setClickable(false);
-//                    holder.resetBtn.setVisibility(View.VISIBLE);
-//                    holder.resetBtn.setClickable(true);
-//
+                    holder.takeBtn.setVisibility(View.INVISIBLE);
+                    holder.takeBtn.setClickable(false);
+                    holder.resetBtn.setVisibility(View.VISIBLE);
+                    holder.resetBtn.setClickable(true);
+
+                    holder.imgBackground.setImageResource(R.color.ij_teal);
+
                     Medication medication = Medication.getById(context, reminder.getMedicationId());
                     medication.setCount(medication.getCount() - reminder.getTakeAmount());
                     medication.updateDB(context);
+                    String currentTime = null;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+                    }
+                    holder.pillTakeAmountTextView.setText("You took " + reminder.getTakeAmount() + " at " + currentTime);
+
                     toasts.showCustomToast(
                             context.getString(R.string.pill_taken_toast, medication.getName()));
+                });
+
+        holder.resetBtn.setOnClickListener(
+                v -> {
+                    holder.takeBtn.setVisibility(View.VISIBLE);
+                    holder.takeBtn.setClickable(true);
+                    holder.resetBtn.setVisibility(View.INVISIBLE);
+                    holder.resetBtn.setClickable(false);
+
+                    holder.imgBackground.setImageResource(R.color.black);
+
+                    Medication medication = Medication.getById(context, reminder.getMedicationId());
+                    medication.setCount(medication.getCount() + reminder.getTakeAmount());
+                    medication.updateDB(context);
+                    holder.pillTakeAmountTextView.setText("Take " + reminder.getTakeAmount());
+
+                    toasts.showCustomToast(
+                            context.getString(R.string.pill_reset_toast, medication.getName()));
+                });
+
+        holder.tvTakeAll.setOnClickListener(
+                v -> {
+//                    long time = reminder.getTime();
+                    // TAKE ALL MEDS FOR REMINDERS THAT MATCH time FOR TODAY
+                    holder.tvTakeAll.setVisibility(View.GONE);
+                    holder.tvUntakeAll.setVisibility(View.VISIBLE);
+                });
+
+        holder.tvUntakeAll.setOnClickListener(
+                v -> {
+//                    long time = reminder.getTime();
+                    // UNTAKE ALL MEDS FOR REMINDERS THAT MATCH time FOR TODAY
+                    holder.tvTakeAll.setVisibility(View.VISIBLE);
+                    holder.tvUntakeAll.setVisibility(View.GONE);
                 });
 
         holder.bigButton.setOnClickListener(

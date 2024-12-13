@@ -42,7 +42,6 @@ public class RemindersRecyclerViewAdapter
             implements View.OnCreateContextMenuListener {
 
         final ConstraintLayout constraintLayout;
-        final TextView tvReminderTime;
         final TextView tvMedicationName;
         final ImageButton btnTake;
         final ImageButton btnReset;
@@ -54,7 +53,6 @@ public class RemindersRecyclerViewAdapter
             constraintLayout =
                     itemView.findViewById(R.id.reminder_item);
             tvMedicationName = itemView.findViewById(R.id.tvMedicationName);
-            tvReminderTime = itemView.findViewById(R.id.tvReminderTime);
             btnTake = itemView.findViewById(R.id.btn_take);
             btnReset = itemView.findViewById(R.id.btn_reset);
             imgCapsule = itemView.findViewById(R.id.img_capsule);
@@ -121,8 +119,8 @@ public class RemindersRecyclerViewAdapter
     }
 
     private void initTextViews(MyViewHolder holder, Reminder reminder) {
-        holder.tvMedicationName.setTextSize(27.0f);
-        holder.tvReminderTime.setTextSize(15.0f);
+//        holder.tvMedicationName.setTextSize(27.0f);
+//        holder.tvReminderTime.setTextSize(15.0f);
 
 //        holder.pillNameTextView.setText(medication.getName());
 
@@ -143,7 +141,6 @@ public class RemindersRecyclerViewAdapter
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             holder.tvMedicationName.setContextClickable(true);
-            holder.tvReminderTime.setContextClickable(true);
         }
     }
 
@@ -151,10 +148,7 @@ public class RemindersRecyclerViewAdapter
         holder.btnTake.setOnClickListener(
             v -> {
                 reminder.fulfill(context);
-                long time = reminder.getTime();
-                String takenAtTime = context.getString(R.string.taken_at, String.valueOf(time));
 
-                holder.tvReminderTime.setText(takenAtTime);
                 holder.btnTake.setVisibility(View.INVISIBLE);
                 holder.btnTake.setClickable(false);
                 holder.btnReset.setVisibility(View.VISIBLE);

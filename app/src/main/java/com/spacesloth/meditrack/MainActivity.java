@@ -6,10 +6,16 @@ import static com.spacesloth.meditrack.Meditrack.IS_CRASH_INTENT_KEY_STRING;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,12 +24,18 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.joda.time.DateTime;
+
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class MainActivity extends AppCompatActivity
-        implements Reminder.ReminderListener {
+        implements Reminder.ReminderListener,
+        MedicationsEditActivity.MedicationUpdateListener,
+        View.OnCreateContextMenuListener {
 
     private final DatabaseHelper db = new DatabaseHelper(this);
     private final Toasts toasts = new Toasts(this);
@@ -35,6 +47,8 @@ public class MainActivity extends AppCompatActivity
 
     RecyclerView recyclerView;
 
+    TextView tvTodaysReminders, tvNoReminders;
+    ImageView imCapsule;
     MainRecyclerViewAdapter recyclerViewAdapter;
     Button settingsButton, aboutButton, fab;
 
@@ -52,9 +66,9 @@ public class MainActivity extends AppCompatActivity
             dialogs.getCrashDialog(intent.getStringExtra(CRASH_DATA_INTENT_KEY_STRING)).show();
         }
 
-        DatabaseHelper db = new DatabaseHelper(this);
-        db.deleteDatabase();
-        db.loadTestData();
+//        DatabaseHelper db = new DatabaseHelper(this);
+//        db.deleteDatabase();
+//        db.loadTestData();
 
         loadRemindersFromDatabase();
         setContentViewAndDesign();
@@ -186,16 +200,37 @@ public class MainActivity extends AppCompatActivity
         aboutButton = findViewById(R.id.btn_about);
         fab = findViewById(R.id.floating_action_button);
         recyclerView = findViewById(R.id.recyclerView);
+        tvTodaysReminders = findViewById(R.id.tv_todays_reminders);
+        imCapsule = findViewById(R.id.img_capsule);
+        tvNoReminders = findViewById(R.id.tv_no_reminders);
+        if (reminders.isEmpty()) {
+            tvTodaysReminders.setVisibility(View.INVISIBLE);
+            imCapsule.setVisibility(View.VISIBLE);
+            tvNoReminders.setVisibility(View.VISIBLE);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                String todaysReminders = new SimpleDateFormat("EE, MMM d, yyyy").format(Calendar.getInstance().getTime());
+                tvTodaysReminders.setText(todaysReminders);
+            }
+        }
     }
 
     private void initiateButtons() {
         settingsButton.setOnClickListener(v -> openSettings());
         aboutButton.setOnClickListener(v -> openAbout());
-        fab.setOnClickListener(v -> openEditReminder(null));
+        fab.setOnCreateContextMenuListener(this);
+//        fab.setOnClickListener(v -> openEditReminder(null));
+    }
+
+    @Override
+    public void onCreateContextMenu(
+            ContextMenu menu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+        menu.add(-1, 0, 0, "Add Medication");
+        menu.add(-1, 1, 1, "Add Reminder");
     }
 
     private void loadRemindersFromDatabase() {
-        reminders = db.getAllReminders(true, "time", "ASC");
+        reminders = db.getRemindersByDateTime(true, DateTime.now(), "time", "ASC");
     }
 
     private void createRecyclerView() {
@@ -205,16 +240,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-        Reminder reminder = reminders.get(item.getGroupId() - 1);
+        Reminder reminder = null;
+
+        if (item.getGroupId() >= 0) {
+            reminder = reminders.get(item.getGroupId());
+        }
 
         switch (item.getItemId()) {
+            case 0:
+                openEditMedication(null);
+                break;
             case 1:
                 openEditReminder(reminder);
                 break;
-            case 2:
+//            case 2:
 //                dialogs.getPillDeletionDialog(medication, item.getGroupId() - 1).show();
-                db.deleteReminder(reminder);
-                break;
+//                db.deleteReminder(reminder);
+//                break;
             default:
                 break;
         }
@@ -244,11 +286,14 @@ public class MainActivity extends AppCompatActivity
 
     private void openEditReminder(Reminder reminder) {
         Intent intent = new Intent(this, RemindersEditActivity.class);
+        if (reminder != null) intent.putExtra("id", reminder.getId());
+        startActivity(intent);
+        backPresses = 0;
+    }
 
-        if (reminder != null) {
-            intent.putExtra("id", reminder.getId());
-        }
-
+    private void openEditMedication(Medication med) {
+        Intent intent = new Intent(this, MedicationsEditActivity.class);
+        if (med != null) intent.putExtra("id", med.getId());
         startActivity(intent);
         backPresses = 0;
     }
@@ -288,5 +333,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void notifyResetReminder(int position) {
         recyclerViewAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void notifyMedicationChange() {
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 }

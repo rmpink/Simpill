@@ -10,6 +10,6 @@
   <path
       android:pathData="M7,3.875c0.345,0 0.625,0.28 0.625,0.625v2.274L9.98,9.6a0.625,0.625 0,1 1,-0.96 0.8l-2.5,-3a0.625,0.625 0,0 1,-0.145 -0.4V4.5c0,-0.345 0.28,-0.625 0.625,-0.625Z"
       android:strokeWidth="1"
-      android:fillColor="@color/ij_darkteal"
+      android:fillColor="@color/white"
       android:fillType="evenOdd"/>
 </vector>

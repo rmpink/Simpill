@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_black"
+        android:background="@color/dark_background_nav_bar_color"
         android:orientation="vertical"
         tools:context="meditrack.MainActivity">
 
@@ -24,12 +24,48 @@
             android:scaleX="0.7"
             android:scaleY="0.7"
             android:alpha="0.3"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/floating_action_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_about"
             app:srcCompat="@drawable/svg_capsule"
             tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/tv_no_reminders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:ellipsize="end"
+            android:paddingVertical="10dp"
+            android:singleLine="false"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:text="No reminders yet!"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_todays_reminders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:ellipsize="end"
+            android:gravity="top"
+            android:paddingVertical="10dp"
+            android:singleLine="false"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_about" />
 
         <Button
             android:id="@+id/btn_about"
@@ -57,10 +93,10 @@
 
         <Button
             android:id="@id/floating_action_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/svg_add_circle"
             android:scaleX="1.2"
             android:scaleY="1.2"
@@ -71,14 +107,12 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginHorizontal="0dp"
             android:layout_marginBottom="18dp"
             app:layout_constraintBottom_toTopOf="@+id/floating_action_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_about" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_todays_reminders" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

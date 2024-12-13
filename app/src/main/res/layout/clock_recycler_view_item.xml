@@ -15,7 +15,7 @@
         android:scaleX="1"
         android:scaleY="1"
         app:layout_constraintBottom_toBottomOf="@id/bottom_horizontal_guideline"
-        app:layout_constraintStart_toStartOf="@+id/start_vertical_guideline"
+        app:layout_constraintStart_toStartOf="@+id/capsule_vertical_guideline"
         app:layout_constraintTop_toTopOf="@+id/top_horizontal_guideline"
         android:background="@drawable/svg_clock" />
 
@@ -40,7 +40,7 @@
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/start_vertical_guideline"
+        android:id="@+id/capsule_vertical_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

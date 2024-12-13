@@ -8,8 +8,8 @@
       android:strokeWidth="1"
       android:fillColor="@color/ij_teal"/>
   <path
-      android:pathData="M7.75,4a0.75,0.75 0,0 0,-1.5 0v2.25H4a0.75,0.75 0,0 0,0 1.5h2.25V10a0.75,0.75 0,0 0,1.5 0V7.75H10a0.75,0.75 0,0 0,0 -1.5H7.75V4Z"
-      android:strokeWidth="1"
-      android:fillColor="@color/ij_darkteal"
+      android:pathData="m7.407,5.371a0.407,0.407 0,0 0,-0.815 0V6.593H5.371a0.407,0.407 0,0 0,0 0.815H6.593V8.629a0.407,0.407 0,0 0,0.815 0V7.407H8.629a0.407,0.407 0,0 0,0 -0.815H7.407Z"
+      android:strokeWidth="0.54314"
+      android:fillColor="@color/white"
       android:fillType="evenOdd"/>
 </vector>

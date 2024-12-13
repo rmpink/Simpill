@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_black">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_guideline_colour_btm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_guideline_colour_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/h_guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_chosen_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_colour_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.84" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/v_guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <com.spacesloth.meditrack.ColourPickerSquareView
+        android:id="@+id/v_sat_val"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/v_guideline_start"
+        app:layout_constraintEnd_toStartOf="@id/v_colour_end"
+        app:layout_constraintTop_toTopOf="@id/h_guideline_start"
+        app:layout_constraintBottom_toTopOf="@id/h_guideline_colour_btm"/>
+
+    <ImageView
+        android:id="@+id/img_hue"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/png_hue"
+        app:layout_constraintStart_toStartOf="@id/v_colour_end"
+        app:layout_constraintEnd_toStartOf="@id/v_guideline_end"
+        app:layout_constraintTop_toTopOf="@id/h_guideline_start" />
+
+    <ImageView
+        android:id="@+id/img_sat_val_cursor"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="-7.5dp"
+        android:layout_marginTop="-7.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/svg_colour_picker_cursor"
+        app:layout_constraintStart_toStartOf="@id/v_guideline_start"
+        app:layout_constraintTop_toTopOf="@id/h_guideline_start" />
+
+    <ImageView
+        android:id="@+id/img_hue_cursor"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/svg_hue_picker_cursor"
+        app:layout_constraintStart_toStartOf="@id/img_hue"
+        app:layout_constraintEnd_toStartOf="@id/v_guideline_end"
+        app:layout_constraintTop_toTopOf="@id/img_hue" />
+
+    <View
+        android:id="@+id/v_chosen_colour"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@id/v_guideline_start"
+        app:layout_constraintTop_toTopOf="@id/h_guideline_colour_top"
+        app:layout_constraintEnd_toStartOf="@id/v_chosen_end"
+        app:layout_constraintBottom_toTopOf="@id/h_guideline_end"/>
+
+    <ImageView
+        android:id="@+id/iv_look_preview"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toStartOf="@id/v_chosen_end"
+        app:layout_constraintTop_toTopOf="@id/h_guideline_colour_top"
+        app:layout_constraintBottom_toTopOf="@id/h_guideline_end"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,8 +12,8 @@ public class Medication {
     private float strength = 0;
     private String strengthUnits = "";
     private float count = 0.0f;
-    private int iconIdx = -1;
-    private int colourIdx = -1;
+    private String icon = "";
+    private String colour = "";
     private boolean refillReminder = false;
     private float refillCount = 0.0f;
     private long refillTime = -1;
@@ -22,15 +22,15 @@ public class Medication {
     private boolean visible = false;
 
     public Medication(String _name, float _strength, String _strengthUnits, float _count,
-            int _iconIdx, int _colourIdx, boolean _refillReminder, float _refillCount,
+            String _icon, String _colour, boolean _refillReminder, float _refillCount,
             long _refillTime, String _rxNumber, boolean _active, boolean _visible) {
 
         name = _name;
         strength = _strength;
         strengthUnits = _strengthUnits;
         count = _count;
-        iconIdx = _iconIdx;
-        colourIdx = _colourIdx;
+        icon = _icon;
+        colour = _colour;
         refillReminder = _refillReminder;
         refillCount = _refillCount;
         refillTime = _refillTime;
@@ -60,10 +60,10 @@ public class Medication {
     public void setStrengthUnits(String strengthUnits) { this.strengthUnits = strengthUnits; }
     public float getCount() { return count; }
     public void setCount(float count) { this.count = count; }
-     public int getIconIdx() { return iconIdx; }
-    public void setIconIdx(int iconIdx) { this.iconIdx = iconIdx; }
-    public int getColourIdx() { return colourIdx; }
-    public void setColourIdx(int colourIdx) { this.colourIdx = colourIdx; }
+     public String getIcon() { return icon; }
+    public void setIcon(String icon) { this.icon = icon; }
+    public String getColour() { return colour; }
+    public void setColour(String colour) { this.colour = colour; }
     public boolean isRefillReminder() { return refillReminder; }
     public void setRefillReminder(boolean refillReminder) { this.refillReminder = refillReminder; }
     public float getRefillCount() { return refillCount; }
@@ -112,8 +112,8 @@ public class Medication {
         contentValues.put("strength", strength);
         contentValues.put("strength_units", strengthUnits);
         contentValues.put("count", count);
-        contentValues.put("icon", iconIdx);
-        contentValues.put("colour", colourIdx);
+        contentValues.put("icon", icon);
+        contentValues.put("colour", colour);
         contentValues.put("refill_reminder", refillReminder);
         contentValues.put("refill_count", refillCount);
         contentValues.put("refill_time", refillTime);

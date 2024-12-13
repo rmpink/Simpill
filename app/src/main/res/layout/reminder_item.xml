@@ -6,45 +6,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reminder_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvTimeHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        android:gravity="bottom"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="22sp"
+        android:hint="09:30"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mid_vertical_guideline"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_take_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="6dp"
+        android:maxLines="1"
+        android:textColor="@color/ij_teal"
+        android:textColorHint="@color/ij_teal"
+        android:textSize="18sp"
+        android:hint="Take all"
+        android:visibility="visible"
+        android:textAllCaps="false"
+        android:text="Take all"
+        app:layout_constraintTop_toTopOf="@id/tvTimeHeader"
+        app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+        app:layout_constraintStart_toEndOf="@id/tvTimeHeader"
+        app:layout_constraintBottom_toBottomOf="@id/tvTimeHeader"/>
+
+    <TextView
+        android:id="@+id/tv_untake_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="6dp"
+        android:maxLines="1"
+        android:textColor="@color/ij_teal"
+        android:textColorHint="@color/ij_teal"
+        android:textSize="18sp"
+        android:hint="Take all"
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:text="Untake all"
+        app:layout_constraintTop_toTopOf="@id/tvTimeHeader"
+        app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+        app:layout_constraintStart_toEndOf="@id/tvTimeHeader"
+        app:layout_constraintBottom_toBottomOf="@id/tvTimeHeader"/>
 
     <ImageView
+        android:id="@+id/background"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.25"
+        android:layout_height="72dp"
+        android:alpha="0.5"
         android:src="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeHeader"
         tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/img_capsule"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:layout_marginVertical="12dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="28dp"
+        android:layout_height="42dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:layout_marginHorizontal="16dp"
         android:contentDescription="Medication Look"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/svg_capsule" />
+        app:layout_constraintBottom_toBottomOf="@id/background"
+        app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+        app:layout_constraintEnd_toStartOf="@id/capsule_vertical_guideline"
+        app:layout_constraintTop_toTopOf="@id/background" />
 
     <Button
         android:id="@+id/bigButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/background"
         app:layout_constraintEnd_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintStart_toEndOf="@id/img_capsule"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/background"
+        app:layout_constraintTop_toTopOf="@id/background"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -53,15 +108,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:ellipsize="end"
-        android:paddingTop="4dp"
+        android:paddingTop="12dp"
         android:gravity="bottom"
         android:maxLines="1"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:verticalScrollbarPosition="right"
-        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@id/background"
         app:layout_constraintEnd_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintStart_toEndOf="@+id/img_capsule" />
+        app:layout_constraintStart_toStartOf="@+id/capsule_vertical_guideline" />
 
     <TextView
         android:id="@+id/tvReminderTakeAmount"
@@ -71,78 +126,53 @@
         android:alpha="0.75"
         android:ellipsize="end"
         android:gravity="top"
-        android:paddingVertical="4dp"
+        android:paddingVertical="7dp"
         android:singleLine="false"
         android:textColor="@color/white"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tvReminderTime"
-        app:layout_constraintStart_toEndOf="@id/img_capsule"
-        app:layout_constraintTop_toTopOf="@+id/guideline7" />
-
-    <TextView
-        android:id="@+id/tvReminderTime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:alpha="0.75"
-        android:ellipsize="end"
-        android:gravity="top"
-        android:paddingVertical="4dp"
-        android:singleLine="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/background"
+        app:layout_constraintStart_toEndOf="@id/capsule_vertical_guideline"
         app:layout_constraintEnd_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintStart_toEndOf="@id/tvReminderTakeAmount"
-        app:layout_constraintTop_toTopOf="@+id/guideline7" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMedicationName" />
 
     <ImageButton
         android:id="@+id/btn_reset"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@android:color/transparent"
         android:clickable="false"
         android:contentDescription="Untake medication"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/background"
         app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/svg_delete" />
+        app:layout_constraintTop_toTopOf="@id/background"
+        app:srcCompat="@drawable/svg_cross_circle" />
 
     <ImageButton
         android:id="@+id/btn_take"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@android:color/transparent"
         android:clickable="false"
         android:contentDescription="Take medication"
-        android:scaleX="2"
-        android:scaleY="2"
+        android:scaleX="1"
+        android:scaleY="1"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/background"
         app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/mid_vertical_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/svg_check_mark" />
-
+        app:layout_constraintTop_toTopOf="@id/background"
+        app:srcCompat="@drawable/svg_uncheck_circle" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/start_vertical_guideline"
+        android:id="@+id/capsule_vertical_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.075" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
-
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/mid_vertical_guideline"
@@ -152,34 +182,17 @@
         app:layout_constraintGuide_percent="0.8" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_vertical_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/end_vertical_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/top_horizontal_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bottom_horizontal_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="79dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintGuide_percent="0.98" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/mGuideline1"
+        android:id="@+id/mGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -94,7 +94,7 @@
         app:layout_constraintBottom_toTopOf="@+id/img_blister_pack"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/mGuideline1"
+        app:layout_constraintStart_toStartOf="@id/mGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/btn_back"
         app:srcCompat="@drawable/svg_capsule"
         tools:ignore="ContentDescription" />
@@ -110,7 +110,7 @@
         app:layout_constraintBottom_toTopOf="@+id/img_pill_bottle"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/mGuideline1"
+        app:layout_constraintStart_toStartOf="@id/mGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/img_capsule"
         app:srcCompat="@drawable/svg_blister_pack" />
 
@@ -125,7 +125,7 @@
         app:layout_constraintBottom_toTopOf="@+id/img_calendar"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/mGuideline1"
+        app:layout_constraintStart_toStartOf="@id/mGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/img_blister_pack"
         app:srcCompat="@drawable/svg_help_question" />
 
@@ -140,7 +140,7 @@
         app:layout_constraintBottom_toTopOf="@id/horizontalGuideline5"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/mGuideline1"
+        app:layout_constraintStart_toStartOf="@id/mGuideline2"
         app:layout_constraintTop_toBottomOf="@+id/img_pill_bottle"
         app:srcCompat="@drawable/svg_calendar_add" />
 
