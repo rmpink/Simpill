@@ -16,11 +16,11 @@ import java.util.List;
 
 public class ImageViewSpinnerAdapter extends BaseAdapter {
     Context context;
-    List<String> images;
+    List<Integer> images;
     LayoutInflater inflater;
     int colour;
 
-    public ImageViewSpinnerAdapter(Context applicationContext, List<String> images, int colour) {
+    public ImageViewSpinnerAdapter(Context applicationContext, List<Integer> images, int colour) {
         this.context = applicationContext;
         this.images = images;
         this.inflater = LayoutInflater.from(applicationContext);
@@ -37,7 +37,7 @@ public class ImageViewSpinnerAdapter extends BaseAdapter {
         return this.images.get(i);
     }
 
-    public int getPosition(String s) {
+    public int getPosition(int s) {
         if (images.contains(s)) {
             return images.indexOf(s);
         } else {
@@ -68,8 +68,7 @@ public class ImageViewSpinnerAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.image_view_adapter_item, null);
         ImageView icon = view.findViewById(R.id.image);
-        int resId = context.getResources().getIdentifier(images.get(i), "drawable", context.getPackageName());
-        icon.setImageResource(resId);
+        icon.setImageResource(images.get(i));
         icon.setBackgroundColor(context.getResources().getColor(R.color.dark_background_nav_bar_color));
 
         if (colour != 0) {

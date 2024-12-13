@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "strength REAL NOT NULL, " +
                 "strength_units LONGINT NOT NULL, " +
                 "count REAL NOT NULL, " +
-                "icon TEXT NOT NULL, " +
+                "icon INT NOT NULL, " +
                 "colour INT NOT NULL, " +
                 "refill_reminder BOOLEAN NOT NULL, " +
                 "refill_count REAL, " +
@@ -75,39 +75,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void loadTestData() {
 //        int bup_id, cam_id, cyp_id, est_id, lor_id, ser_id, que_id, ate_id;
-//        bup_id = createMedication(new Medication("Abilify", 1, "mg", 10, "look_bullet", "", false, -1, 0, null, true, true));
-//        cam_id = createMedication(new Medication("Cambia", 50, "mg", 16, "look_triangle", "", false, -1, 0, null, true, true));
-//        cyp_id = createMedication(new Medication("Cyproterone", 50, "mg", 88, "look_circleline", "", false, -1, 0, null, true, true));
-//        est_id = createMedication(new Medication("Estrace", 2, "mg", 305, "look_circleline", "#ADD8E6", false, -1, 0, null, true, true));
-//        lor_id = createMedication(new Medication("Lorazepam", 0.5F, "mg", 41, "look_circleline", "", false, -1, 0, null, true, true));
-//        ser_id = createMedication(new Medication("Sertraline", 50, "mg", 195, "look_capsulemono", "#FFFF00", false, -1, 0, null, true, true));
+//        bup_id = createMedication(new Medication("Abilify", 1, "mg", 10, 2131230883, -1, false, -1, 0, null, true, true));
+//        cam_id = createMedication(new Medication("Cambia", 50, "mg", 16, 2131230912, -1, false, -1, 0, null, true, true));
+//        cyp_id = createMedication(new Medication("Cyproterone", 50, "mg", 88, 2131230890, -1, false, -1, 0, null, true, true));
+//        est_id = createMedication(new Medication("Estrace", 2, "mg", 305, 2131230890, -5383962, false, -1, 0, null, true, true));
+//        lor_id = createMedication(new Medication("Lorazepam", 0.5F, "mg", 41, 2131230890, -1, false, -1, 0, null, true, true));
+//        ser_id = createMedication(new Medication("Sertraline", 50, "mg", 195, 2131230888, -256, false, -1, 0, null, true, true));
         int a_id, b_id, c_id, d_id, e_id, f_id, g_id, h_id, i_id, j_id, k_id, l_id, m_id, n_id, o_id, p_id, q_id, r_id, s_id, t_id, u_id, v_id, w_id, x_id, y_id, z_id;
-        a_id = createMedication(new Medication("Alastor", 1, "units", 10, "look_bullet", -8388652, true, 10, 100, null, true, false));
-        b_id = createMedication(new Medication("Belphegor", 2, "mg", 20, "look_butterfly", -5952982, false, -1, 0, null, false, true));
-        c_id = createMedication(new Medication("Camio", 3, "IU", 30, "look_butterflyline", -16711681, false, -1, 0, null, true, true));
-        d_id = createMedication(new Medication("Dantalion", 4, "mcg", 40, "look_capsule", -9868951, false, -1, 0, null, true, true));
-        e_id = createMedication(new Medication("Eligos", 5, "mcg/ml", 50, "look_capsuleduo", -11483016, true, 20, 200, null, true, true));
-        f_id = createMedication(new Medication("Focalor", 6, "mcg", 60, "look_capsulemono", -11627944, false, -1, 0, null, true, true));
-        g_id = createMedication(new Medication("Glasya-Labolas", 7, "mEq", 70, "look_circle", -793661, false, -1, 0, null, true, true));
-        h_id = createMedication(new Medication("Hurakan", 8, "mL", 80, "look_circleline", -2858241, false, -1, 0, null, true, true));
-        i_id = createMedication(new Medication("Ishtar", 9, "%", 90, "look_diamond", -35038, true, 30, 300, null, true, false));
-        j_id = createMedication(new Medication("Jormungand", 10, "mg/g", 100, "look_donut", -6238228, false, -1, 0, null, true, true));
-        k_id = createMedication(new Medication("Kappas", 11, "mg/cm2", 110, "look_egg", -11745966, false, -1, 0, null, true, true));
-        l_id = createMedication(new Medication("Lix Tetrax", 12, "mg/ml", 120, "look_eight", -1826281, false, -1, 0, null, true, true));
-        m_id = createMedication(new Medication("Melchom", 13, "mcg/hr", 130, "look_eightline", -7250067, false, -1, 0, null, true, true));
-        n_id = createMedication(new Medication("Nybbas", 14, "units", 140, "look_gelcap", -6487809, false, -1, 0, null, false, true));
-        o_id = createMedication(new Medication("Oriax", 15, "mg", 150, "look_halfmoon", -462621, true, 40, 400, null, false, true));
-        p_id = createMedication(new Medication("Phenex", 16, "IU", 160, "look_octagon", -5813561, false, -1, 0, null, true, false));
-        q_id = createMedication(new Medication("Qemetiel", 17, "mcg", 170, "look_pentagon", -537911, false, -1, 0, null, true, true));
-        r_id = createMedication(new Medication("Ribesal", 18, "mcg/ml", 180, "look_pentagonline", -1354746, false, -1, 0, null, false, false));
-        s_id = createMedication(new Medication("Stolas", 19, "mEq", 190, "look_rect", -280297, false, -1, 0, null, true, false));
-        t_id = createMedication(new Medication("Torngarsuk", 20, "mL", 200, "look_roundedrect", -6236492, false, -1, 0, null, true, true));
-        u_id = createMedication(new Medication("Uvall", 21, "%", 210, "look_shield", -8431016, true, 50, 500, null, true, true));
-        v_id = createMedication(new Medication("Vapula", 22, "mg/g", 220, "look_shieldline", -641654, false, -1, 0, null, true, true));
-        w_id = createMedication(new Medication("Wechuge", 23, "mg/cm2", 230, "look_square", -1, false, -1, 0, null, true, true));
-        x_id = createMedication(new Medication("Xaphan", 24, "mg/ml", 240, "look_squarelines", -3975145, false, -1, 0, null, true, true));
-        y_id = createMedication(new Medication("Yan-gant-y-tan", 25, "mcg/hr", 250, "look_tablet", -1903338, false, -1, 0, null, false, true));
-        z_id = createMedication(new Medication("Zepar", 26, "units", 260, "look_tabletline", -7783425, false, -1, 0, null, true, true));
+        a_id = createMedication(new Medication("Alastor", 1, "units", 10, 2131230883, -8388652, true, 10, 100, null, true, false));
+        b_id = createMedication(new Medication("Belphegor", 2, "mg", 20, 2131230884, -5952982, false, -1, 0, null, false, true));
+        c_id = createMedication(new Medication("Camio", 3, "IU", 30, 2131230885, -16711681, false, -1, 0, null, true, true));
+        d_id = createMedication(new Medication("Dantalion", 4, "mcg", 40, 2131230886, -9868951, false, -1, 0, null, true, true));
+        e_id = createMedication(new Medication("Eligos", 5, "mcg/ml", 50, 2131230887, -11483016, true, 20, 200, null, true, true));
+        f_id = createMedication(new Medication("Focalor", 6, "mcg", 60, 2131230888, -11627944, false, -1, 0, null, true, true));
+        g_id = createMedication(new Medication("Glasya-Labolas", 7, "mEq", 70, 2131230889, -793661, false, -1, 0, null, true, true));
+        h_id = createMedication(new Medication("Hurakan", 8, "mL", 80, 2131230890, -2858241, false, -1, 0, null, true, true));
+        i_id = createMedication(new Medication("Ishtar", 9, "%", 90, 2131230891, -35038, true, 30, 300, null, true, false));
+        j_id = createMedication(new Medication("Jormungand", 10, "mg/g", 100, 2131230892, -6238228, false, -1, 0, null, true, true));
+        k_id = createMedication(new Medication("Kappas", 11, "mg/cm2", 110, 2131230893, -11745966, false, -1, 0, null, true, true));
+        l_id = createMedication(new Medication("Lix Tetrax", 12, "mg/ml", 120, 2131230894, -1826281, false, -1, 0, null, true, true));
+        m_id = createMedication(new Medication("Melchom", 13, "mcg/hr", 130, 2131230895, -7250067, false, -1, 0, null, true, true));
+        n_id = createMedication(new Medication("Nybbas", 14, "units", 140, 2131230896, -6487809, false, -1, 0, null, false, true));
+        o_id = createMedication(new Medication("Oriax", 15, "mg", 150, 2131230897, -462621, true, 40, 400, null, false, true));
+        p_id = createMedication(new Medication("Phenex", 16, "IU", 160, 2131230898, -5813561, false, -1, 0, null, true, false));
+        q_id = createMedication(new Medication("Qemetiel", 17, "mcg", 170, 2131230899, -537911, false, -1, 0, null, true, true));
+        r_id = createMedication(new Medication("Ribesal", 18, "mcg/ml", 180, 2131230900, -1354746, false, -1, 0, null, false, false));
+        s_id = createMedication(new Medication("Stolas", 19, "mEq", 190, 2131230901, -280297, false, -1, 0, null, true, false));
+        t_id = createMedication(new Medication("Torngarsuk", 20, "mL", 200, 2131230902, -6236492, false, -1, 0, null, true, true));
+        u_id = createMedication(new Medication("Uvall", 21, "%", 210, 2131230903, -8431016, true, 50, 500, null, true, true));
+        v_id = createMedication(new Medication("Vapula", 22, "mg/g", 220, 2131230904, -641654, false, -1, 0, null, true, true));
+        w_id = createMedication(new Medication("Wechuge", 23, "mg/cm2", 230, 2131230905, -1, false, -1, 0, null, true, true));
+        x_id = createMedication(new Medication("Xaphan", 24, "mg/ml", 240, 2131230906, -3975145, false, -1, 0, null, true, true));
+        y_id = createMedication(new Medication("Yan-gant-y-tan", 25, "mcg/hr", 250, 2131230907, -1903338, false, -1, 0, null, false, true));
+        z_id = createMedication(new Medication("Zepar", 26, "units", 260, 2131230908, -7783425, false, -1, 0, null, true, true));
 
         // EDGE CASES
         // --- Not active, but visible
@@ -341,7 +341,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 c.getFloat(c.getColumnIndexOrThrow("strength")),
                 c.getString(c.getColumnIndexOrThrow("strength_units")),
                 c.getFloat(c.getColumnIndexOrThrow("count")),
-                c.getString(c.getColumnIndexOrThrow("icon")),
+                c.getInt(c.getColumnIndexOrThrow("icon")),
                 c.getInt(c.getColumnIndexOrThrow("colour")),
                 Boolean.getBoolean(c.getString(c.getColumnIndexOrThrow("refill_reminder"))),
                 c.getFloat(c.getColumnIndexOrThrow("refill_count")),

@@ -26,8 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.joda.time.DateTime;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;

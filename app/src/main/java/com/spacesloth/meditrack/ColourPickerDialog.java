@@ -34,7 +34,7 @@ public class ColourPickerDialog {
     final float[] chosenColourHSV = new float[3];
 
     @SuppressLint("ClickableViewAccessibility")
-    public ColourPickerDialog(Context _context, int _colour, String _look, OnColourPickerSquareListener _listener) {
+    public ColourPickerDialog(Context _context, int _colour, int _look, OnColourPickerSquareListener _listener) {
         this.context = _context;
         this.listener = _listener;
         Color.colorToHSV(_colour, chosenColourHSV);
@@ -52,9 +52,7 @@ public class ColourPickerDialog {
 
         vSatVal.setHue(getHue());
         vChosenColour.setBackgroundColor(_colour);
-
-        int resId = context.getResources().getIdentifier(_look, "drawable", context.getPackageName());
-        ivLookPreview.setImageResource(resId);
+        ivLookPreview.setImageResource(_look);
 
         if (_colour != 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -166,7 +164,7 @@ public class ColourPickerDialog {
         });
     }
 
-    private int getColour() { return (Color.HSVToColor(chosenColourHSV) & 0xffffffff); }
+    private int getColour() { return Color.HSVToColor(chosenColourHSV); }
 
     private float getHue() { return chosenColourHSV[0]; }
     private float getSat() { return chosenColourHSV[1]; }

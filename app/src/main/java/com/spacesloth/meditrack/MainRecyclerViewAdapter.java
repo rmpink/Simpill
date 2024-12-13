@@ -142,9 +142,7 @@ public class MainRecyclerViewAdapter
         holder.pillTakeAmountTextView.setText("Take " + reminder.getTakeAmount());
 
         // CHANGE Medication Icon back to an INT, i.e. Medication.getIconId()
-        Resources res = context.getResources();
-        int lookId = res.getIdentifier(medication.getIcon(), "drawable", context.getPackageName());
-        holder.medLookImage.setImageResource(lookId);
+        holder.medLookImage.setImageResource(medication.getIcon());
         int c = medication.getColour();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             holder.medLookImage.setColorFilter(new BlendModeColorFilter(c, BlendMode.MODULATE));

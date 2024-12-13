@@ -12,7 +12,7 @@ public class Medication {
     private float strength = 0;
     private String strengthUnits = "";
     private float count = 0.0f;
-    private String icon = "";
+    private int icon = 2131230890;
     private int colour = -1;
     private boolean refillReminder = false;
     private float refillCount = 0.0f;
@@ -22,8 +22,8 @@ public class Medication {
     private boolean visible = false;
 
     public Medication(String _name, float _strength, String _strengthUnits, float _count,
-            String _icon, int _colour, boolean _refillReminder, float _refillCount,
-            long _refillTime, String _rxNumber, boolean _active, boolean _visible) {
+                      int _icon, int _colour, boolean _refillReminder, float _refillCount,
+                      long _refillTime, String _rxNumber, boolean _active, boolean _visible) {
 
         name = _name;
         strength = _strength;
@@ -60,8 +60,8 @@ public class Medication {
     public void setStrengthUnits(String strengthUnits) { this.strengthUnits = strengthUnits; }
     public float getCount() { return count; }
     public void setCount(float count) { this.count = count; }
-    public String getIcon() { return icon; }
-    public void setIcon(String icon) { this.icon = icon; }
+    public int getIcon() { return icon; }
+    public void setIcon(int icon) { this.icon = icon; }
     public int getColour() { return colour; }
     public void setColour(int colour) { this.colour = colour; }
     public boolean isRefillReminder() { return refillReminder; }

@@ -4,6 +4,7 @@ package com.spacesloth.meditrack;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MedicationsEditActivity extends AppCompatActivity
     implements AdapterView.OnItemSelectedListener,
@@ -33,7 +35,7 @@ public class MedicationsEditActivity extends AppCompatActivity
     Spinner spnMedicationLook, spnStrengthUnits;
 
     Medication med = new Medication();
-    String currentLook = "look_circleline";
+    int currentLook = 2131230890;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,10 @@ public class MedicationsEditActivity extends AppCompatActivity
     private void initiateSpinners() {
         spnStrengthUnits.setOnItemSelectedListener(this);
         spnMedicationLook.setOnItemSelectedListener(this);
-        List<String> medLooks = Arrays.asList(getResources().getStringArray(R.array.looks_array));
+        List<Integer> medLooks = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            medLooks = Arrays.stream(getResources().getIntArray(R.array.looks_array)).boxed().collect(Collectors.toList());
+        }
         ImageViewSpinnerAdapter medLookAdapter = new ImageViewSpinnerAdapter(this, medLooks, 0);
         spnMedicationLook.setAdapter(medLookAdapter);
     }
@@ -212,7 +217,7 @@ public class MedicationsEditActivity extends AppCompatActivity
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.spn_med_look) {
-            currentLook = (String) parent.getItemAtPosition(position);
+            currentLook = (int) parent.getItemAtPosition(position);
         }
     }
 
